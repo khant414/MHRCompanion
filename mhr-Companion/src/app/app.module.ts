@@ -3,14 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Motion_ZoneComponent } from './motion_zones/motion_zones.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Motion_ZoneComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,12 @@
+//Install Font-Awesome and BootStrap
+//npm install bootstrap font-awesome
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: "<pm-motion_zones></pm-motion_zones>",
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'mhr-Companion';
+  title = 'Monster Hunter Rising Companion';
 }
