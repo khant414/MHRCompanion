@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: "<pm-motion_zones></pm-motion_zones><app-hit-zone></app-hit-zone>",
+  templateUrl: './app.component.html',
+  //template: "<pm-motion_zones></pm-motion_zones><app-hit-zone></app-hit-zone>",
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
