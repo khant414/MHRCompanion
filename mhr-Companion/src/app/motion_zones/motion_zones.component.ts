@@ -5,5 +5,5 @@ import {Component} from '@angular/core'
     templateUrl: './motion_zones.component.html'
 })
 export class Motion_ZoneComponent {
-    pageTitle: string = 'Motion Zone List'
+    pageTitle: string = 'Motion Zone Library'
 }

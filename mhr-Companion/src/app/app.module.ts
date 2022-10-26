@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Motion_ZoneComponent } from './motion_zones/motion_zones.component';
+import { HitZoneComponent } from './hit-zone/hit-zone.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Motion_ZoneComponent
+    Motion_ZoneComponent,
+    HitZoneComponent
   ],
   imports: [
     BrowserModule,
