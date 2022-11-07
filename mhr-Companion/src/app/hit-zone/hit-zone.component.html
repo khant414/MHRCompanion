@@ -1,38 +1,93 @@
 <div class="card">
-    <div class="card-header">{{pageTitle}}</div>
-      <div class='card-body'>
-          <div class='row'>
-              <div class='co1-md-2'>Filter by:</div>
-              <div class="col-md-4">
-                  <input type='text' />
-              </div>
-          </div>
+  <div class="card-header">{{ pageTitle }}</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="co1-md-2">Filter by:</div>
+      <div class="col-md-4">
+        <input type="text"
+        [(ngModel)]='hitzoneFilter' />
       </div>
-      <div class='row'>
-          <div class='co1-md-6'>
-              <h4>Filtered by: </h4>
-          </div>
-      </div>
-      <div class="table-responsive">
-          <table class="table">
-              <thead>
-                  <tr>
-                      <th>
-                          <button class='btn btn-primary'>
-                              Show Details
-                          </button>
-                      </th>
-                      <th>Hit Zone</th>
-                      <th>Ability</th>
-                      <th>Available</th>
-                      <th>Cost</th>
-                      <th>Rating</th>
-                  </tr>
-              </thead>
-              <tbody>
-                      <!-- to be filled -->
-              </tbody>
-          </table>
-      </div>
+    </div>
   </div>
-  
+  <div class="row">
+    <div class="co1-md-6">
+      <h4>Filtered by: {{hitzoneFilter}}</h4>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table" *ngIf="hitzones.length">
+      <thead>
+        <tr>
+          <th>
+            <button class="btn btn-primary">Show Details</button>
+          
+          <th>Parts</th>
+          <th>State</th>
+          <th>
+            <img
+              src="assets/images/hit_slash.png"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+          <th>
+            <img
+              src="assets/images/hit_strike.png"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+          <th>
+            <img
+              src="assets/images/hit_shell.png"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+          <th>
+            <img
+              src="assets/images/fire.svg"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+          <th>
+            <img
+              src="assets/images/water.svg"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+          <th>
+            <img
+              src="assets/images/ice.svg"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+          <th>
+            <img
+              src="assets/images/dragon.svg"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hitzone of filteredHitzones">
+            <td>Image?</td> 
+            <td>{{ hitzone.parts_name}}</td>
+            <td>0</td>
+            <td>{{ hitzone.hit_slash }}</td>
+            <td>{{ hitzone.hit_strike }}</td>
+            <td>{{hitzone.hit_shell}}</td>
+            <td>{{hitzone.element_fire}}</td>
+            <td>{{hitzone.element_water}}</td>
+            <td>{{hitzone.element_ice}}</td>
+            <td>{{hitzone.element_dragon}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   //template: "<pm-motion_zones></pm-motion_zones><app-hit-zone></app-hit-zone>",
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css','../styles.css']
 })
 export class AppComponent {
   title = 'Monster Hunter Rising Companion';
