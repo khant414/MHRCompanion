@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Motion_ZoneComponent } from './motion_zones/motion_zones.component';
 import { HitZoneComponent } from './hit-zone/hit-zone.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { HitZoneComponent } from './hit-zone/hit-zone.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
   ],
   providers: [],
