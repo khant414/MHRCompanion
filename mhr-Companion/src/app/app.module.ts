@@ -8,11 +8,11 @@ import { HitZoneComponent } from './hit-zone/hit-zone.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     Motion_ZoneComponent,
     HitZoneComponent
-  ],
+   ],
   imports: [
     BrowserModule,
     FormsModule,

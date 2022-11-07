@@ -2,6 +2,3 @@
 /*Must add import statements here*/
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.min.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

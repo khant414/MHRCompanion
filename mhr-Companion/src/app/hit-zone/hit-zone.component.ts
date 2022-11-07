@@ -14,7 +14,7 @@ export class HitZoneComponent implements OnInit {
 
   filteredHitzones: IHitzone[] = [];
 
-  //test Data
+  //test Data - will be replaced with API call during onInit
 hitzones: IHitzone[] = [
   {
     "parts_name": "Head",
