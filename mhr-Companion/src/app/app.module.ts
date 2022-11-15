@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { Motion_ZoneComponent } from './motion_zones/motion_zones.component';
 import { HitZoneComponent } from './hit-zone/hit-zone.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
     Motion_ZoneComponent,
-    HitZoneComponent
+    HitZoneComponent,
+    LoginComponent
    ],
   imports: [
     BrowserModule,

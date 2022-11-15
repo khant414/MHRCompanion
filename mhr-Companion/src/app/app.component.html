@@ -7,14 +7,24 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <header>
-    <h1>Welcome Monster Hunter!</h1>
+
 </header>
+<h2>Welcome, {{ welcomeMessage || "You need to login Monster Hunter!"}}</h2>
 <nav class="navbar navbar-light bg-faded">
-<a class="nav-link" href="pm-motion_zone">Motion Zone<i class="fa fa-bell-o"></i></a>
+  <a class="nav-link"><app-login></app-login></a>
+  <a class="nav-link" routerLink="/pm-motion_zone">Motion Zone<i class="fa fa-bell-o"></i></a>
+  <a class="nav-link" routerLink="/app-hit-zone">HitZone<i class="fa fa-bell-o"></i></a>
+</nav>
+<app-hit-zone></app-hit-zone>
+<pm-motion_zones></pm-motion_zones>
+
+<router-outlet></router-outlet>
+<!-- <nav class="navbar navbar-light bg-faded">
+
 </nav>
 <nav>
 <a class="nav-link" href="app-hit-zone">Hit Zone<i class="fa fa-stack-overflow"></i></a>
-</nav>
+</nav> -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
@@ -23,4 +33,3 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<router-outlet></router-outlet>
