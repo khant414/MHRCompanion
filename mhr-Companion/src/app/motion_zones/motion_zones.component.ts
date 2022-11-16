@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core'
 import { IMotionzone } from './motion_zone'
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MotionZoneService } from './motion_zone.service';
+
 @Component({
     selector: 'pm-motion_zones',
     templateUrl: './motion_zones.component.html',
-    styleUrls: ['./motion_zones.component.css']
+    styleUrls: ['./motion_zones.component.css'],
+    providers: [MotionZoneService]
 })
 export class Motion_ZoneComponent implements OnInit {
-    pageTitle: string = 'Motion Zone Library'
+    pageTitle: string = 'Motion Value Library';
 
 
     //getters & setters for filter
@@ -19,35 +23,47 @@ export class Motion_ZoneComponent implements OnInit {
         this.filteredMotionzones = this.performFilter(value);
     }
 
+    errorMessage: string = '';
+
     filteredMotionzones: IMotionzone[] = [];
+
+    motionzones: IMotionzone[] = [];
+    sub: Subscription | undefined;
 
     //test Data - will be replaced with API call during onInit
     
-    constructor() { }
+    constructor( private motionzoneservice: MotionZoneService ) { }
 
-    motionzones: IMotionzone[] = [
-        {
-            "_id": "7c147b4c-d276-499f-b070-803e4133b0ee",
-            "moveId": 1,
-            "moveName": "Overhead Slash",
-            "damageType": "Sever",
-            "rawMv": 52,
-            "eleMv": 1,
-            "weaponName": "GS"
-        },
-        {
-            "_id": "3a0ba497-0146-4d64-94c9-396d8d17112f",
-            "moveId": 2,
-            "moveName": "Mid Thrust I/II",
-            "damageType": "Sever",
-            "rawMv": 24,
-            "eleMv": 1,
-            "weaponName": "LA"
-        }
-    ];
+    // motionzones: IMotionzone[] = [
+    //     {
+    //         "moveId": 1,
+    //         "moveName": "Overhead Slash",
+    //         "damageType": "Sever",
+    //         "rawMv": 52,
+    //         "eleMv": 1,
+    //         "weaponName": "GS"
+    //     },
+    //     {
+    //         "moveId": 2,
+    //         "moveName": "Mid Thrust I/II",
+    //         "damageType": "Sever",
+    //         "rawMv": 24,
+    //         "eleMv": 1,
+    //         "weaponName": "LA"
+    //     }
+    // ];
     
     ngOnInit(): void {
-        this._motionzoneFilter = 'r'
+        this._motionzoneFilter = 'r';
+
+        this.sub = this.motionzoneservice.getLanceMoves().subscribe({
+            next: motionzones => this.motionzones = motionzones,
+            error: err => this.errorMessage = err
+        });
+    }
+
+    ngOnDestroy() {
+        this.sub?.unsubscribe();
     }
     
 
@@ -55,7 +71,9 @@ export class Motion_ZoneComponent implements OnInit {
     performFilter(filterBy: string): IMotionzone[] {
         filterBy = filterBy.toLocaleLowerCase();
         return this.motionzones.filter((motionzone: IMotionzone) =>
-            motionzone.moveName.toLocaleLowerCase().includes(filterBy))
+            motionzone.MoveName.toLocaleLowerCase().includes(filterBy))
+        // console.log(this.motionzones);
+        // return this.motionzones;
     }
    
 }

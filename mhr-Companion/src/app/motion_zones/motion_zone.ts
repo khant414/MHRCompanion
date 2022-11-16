@@ -1,9 +1,8 @@
 export interface IMotionzone {
-    _id: string;
-    moveId: number;
-    moveName: string;
-    damageType: string;
-    rawMv: number;
-    eleMv: number;
-    weaponName: string;
+    MoveID: number;
+    MoveName: string;
+    DamageType: string;
+    RawMV: number;
+    EleMV: number;
+    WeaponName: string;
 }
