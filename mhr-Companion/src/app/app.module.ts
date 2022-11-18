@@ -7,13 +7,15 @@ import { Motion_ZoneComponent } from './motion_zones/motion_zones.component';
 import { HitZoneComponent } from './hit-zone/hit-zone.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
     Motion_ZoneComponent,
     HitZoneComponent,
-    LoginComponent
+    LoginComponent,
+    AboutUsComponent
    ],
   imports: [
     BrowserModule,
