@@ -8,25 +8,105 @@ export class HitzoneService {
     getHitzones(): IHitzone[] {
         return [
             {
-                "parts_name": "asd",
-                "hit_slash": 1,
-                "hit_strike": 1,
-                "hit_shell": 1,
-                "element_fire": 1,
-                "element_water": 1,
-                "element_ice": 1,
-                "element_dragon": 1
+                "parts_name": "Antenna",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
             },
             {
-                "parts_name": "asd",
-                "hit_slash": 1,
-                "hit_strike": 1,
-                "hit_shell": 1,
-                "element_fire": 1,
-                "element_water": 1,
-                "element_ice": 1,
-                "element_dragon": 1
-            }
+                "parts_name": "Body",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
+            },
+            {
+                "parts_name": "Foreleg",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
+            },
+            {
+                "parts_name": "Head",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
+            },
+            {
+                "parts_name": "Hind Leg",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
+            },
+            {
+                "parts_name": "Neck",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
+            },
+            {
+                "parts_name": "Tail",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
+            },
+            {
+                "parts_name": "Wing",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
+            },
+            {
+                "parts_name": "Wingclaw",
+                "hit_slash": 75,
+                "hit_strike": 70,
+                "hit_shot": 50,
+                "element_fire": 20,
+                "element_water": 0,
+                "element_ice": 5,
+                "element_thunder": 10,
+                "element_dragon": 25
+            },
+
         ]
     }
 
@@ -34,12 +114,12 @@ export class HitzoneService {
     private hitzoneUrl = 'http://localhost:5000/hzsearch/1';
     constructor(private http:HttpClient) { }
 
-    getGoreHitzones(): Observable<IHitzone[]>{
-        return this.http.get<IHitzone[]>(this.hitzoneUrl).pipe(
-            tap(data => console.log('All: ', JSON.stringify(data))),
-            catchError(this.handleError)
-        );
-    }
+    // getGoreHitzones(): Observable<IHitzone[]>{
+    //     return this.http.get<IHitzone[]>(this.hitzoneUrl).pipe(
+    //         tap(data => console.log('All: ', JSON.stringify(data))),
+    //         catchError(this.handleError)
+    //     );
+    // }
 
     private handleError(err: HttpErrorResponse){
         let errorMessage = '';

@@ -67,6 +67,13 @@
           </th>
           <th>
             <img
+              src="assets/images/thunder.svg"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+          <th>
+            <img
               src="assets/images/dragon.svg"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
@@ -81,10 +88,11 @@
           <td>0</td>
           <td>{{ hitzone.hit_slash }}</td>
           <td>{{ hitzone.hit_strike }}</td>
-          <td>{{ hitzone.hit_shell }}</td>
+          <td>{{ hitzone.hit_shot }}</td>
           <td>{{ hitzone.element_fire }}</td>
           <td>{{ hitzone.element_water }}</td>
           <td>{{ hitzone.element_ice }}</td>
+          <td>{{ hitzone.element_thunder }}</td>
           <td>{{ hitzone.element_dragon }}</td>
         </tr>
       </tbody>
