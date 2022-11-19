@@ -7,19 +7,19 @@ import { HttpClient, HttpErrorResponse, } from '@angular/common/http';
 export class MotionZoneService {
 
 
-    private hitzoneUrl = 'http://localhost:5000/mvsearch/1';
-    private hitzoneUrl2 = 'http://localhost:5000/mvsearch2/LA';
+    private motionzoneURL = 'http://localhost:5000/mvsearch/1';
+    private motionzoneUrl1 = 'http://localhost:5000/mvsearch2/LA';
     constructor(private http:HttpClient) { }
 
     getOneMove(): Observable<IMotionzone[]>{
-        return this.http.get<IMotionzone[]>(this.hitzoneUrl).pipe(
+        return this.http.get<IMotionzone[]>(this.motionzoneURL).pipe(
             tap(data => console.log('All: ', JSON.stringify(data))),
             catchError(this.handleError)
         );
     }
 
     getLanceMoves(): Observable<IMotionzone[]>{
-        return this.http.get<IMotionzone[]>(this.hitzoneUrl2).pipe(
+        return this.http.get<IMotionzone[]>(this.motionzoneUrl1).pipe(
             tap(data => console.log('All: ', JSON.stringify(data))),
             catchError(this.handleError)
         );

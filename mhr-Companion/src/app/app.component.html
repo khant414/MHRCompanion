@@ -8,13 +8,17 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <header>
 
-</header>
+
 <h2>Welcome, {{ welcomeMessage || "You need to login Monster Hunter!"}}</h2>
 <nav class="navbar navbar-light bg-faded">
   <a class="nav-link"><app-login></app-login></a>
   <a class="nav-link" routerLink="/pm-motion_zone">Motion Zone<i class="fa fa-bell-o"></i></a>
   <a class="nav-link" routerLink="/app-hit-zone">HitZone<i class="fa fa-bell-o"></i></a>
+  <a class="nav-link" routerLink="/app-home">Home<i class="fa fa-bell-o"></i></a>
 </nav>
+</header>
+<app-home></app-home>
+
 <!-- <app-hit-zone></app-hit-zone>
 <pm-motion_zones></pm-motion_zones> -->
 

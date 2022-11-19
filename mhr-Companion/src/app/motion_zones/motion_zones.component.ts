@@ -1,6 +1,6 @@
 import { IMotionzone } from './motion_zone'
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { MotionZoneService } from './motion_zone.service';
 
 @Component({
@@ -54,10 +54,11 @@ export class Motion_ZoneComponent implements OnInit {
     // ];
     
     ngOnInit(): void {
-        this._motionzoneFilter = 'r';
-
         this.sub = this.motionzoneservice.getLanceMoves().subscribe({
-            next: motionzones => this.motionzones = motionzones,
+            next: motionzones => {
+                this.motionzones = motionzones;
+                this.filteredMotionzones = motionzones;
+            },
             error: err => this.errorMessage = err
         });
     }
