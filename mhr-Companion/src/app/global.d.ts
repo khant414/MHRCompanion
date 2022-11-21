@@ -57,6 +57,27 @@ declare global {
         WeaponName: string;
     }
 
+    interface HZContainer{
+        parts_name: string;
+        hit_slash: number;
+        hit_strike: number;
+        hit_shot: number;
+        element_fire: number;
+        element_water: number;
+        element_ice: number;
+        element_thunder: number;
+        element_dragon: number;
+
+    }
+
+    interface MVContainer{
+        MoveID: number;
+        MoveName: string;
+        DamageType: string;
+        RawMV: number;
+        EleMV: number;
+        WeaponName: string;
+    }
     
 
 }

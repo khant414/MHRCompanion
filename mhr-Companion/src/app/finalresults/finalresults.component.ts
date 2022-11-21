@@ -65,7 +65,9 @@ export class FinalresultsComponent implements OnInit {
     "mailofhellfire": 0,
     "dereliction": 0,
     "burst": 0,
+  };
 
+  mathHZ: HZContainer = {
     "parts_name": "Antenna",
     "hit_slash": 75,
     "hit_strike": 70,
@@ -75,14 +77,18 @@ export class FinalresultsComponent implements OnInit {
     "element_ice": 5,
     "element_thunder": 10,
     "element_dragon": 25,
+  }
 
+  mathMV: MVContainer = {
     "MoveID": 2,
     "MoveName": "Mid Thrust I/II",
     "DamageType": "Sever",
     "RawMV": 25,
     "EleMV": 1,
     "WeaponName": "LA"
-  };
+  }
+
+  
 
   constructor() { }
 
@@ -362,7 +368,7 @@ export class FinalresultsComponent implements OnInit {
     //crit chance calculation
 
     //check if move is blunt AND target is blunt weakspot or sever AND sever weakspot then wex calculations are done
-    switch ((this.math.DamageType == "Blunt" && this.math.hit_strike >= 45) || (this.math.DamageType == "Sever" && this.math.hit_slash >= 45) ){
+    switch ((this.mathMV.DamageType == "Blunt" && this.mathHZ.hit_strike >= 45) || (this.mathMV.DamageType == "Sever" && this.mathHZ.hit_slash >= 45) ){
       case false: {
         break;
       }
@@ -477,7 +483,7 @@ export class FinalresultsComponent implements OnInit {
 
     //burst goes first as it is a complete flat bonus
 
-    if (this.math.WeaponName == "DB"){
+    if (this.mathMV.WeaponName == "DB"){
       //db ele values
       switch (this.math.burst){
         case 0: {
@@ -552,7 +558,7 @@ export class FinalresultsComponent implements OnInit {
     //checks for element exploit, probably not the most efficient method but w/e
     switch (this.math.eleType){
       case "fire":{
-        if (this.math.element_fire >= 20){
+        if (this.mathHZ.element_fire >= 20){
           switch (this.math.eleexploit){
             case 0: {
               break;
@@ -574,7 +580,7 @@ export class FinalresultsComponent implements OnInit {
         break;
       }
       case "water":{
-        if (this.math.element_fire >= 20){
+        if (this.mathHZ.element_fire >= 20){
           switch (this.math.eleexploit){
             case 0: {
               break;
@@ -596,7 +602,7 @@ export class FinalresultsComponent implements OnInit {
         break;
       }
       case "ice":{
-        if (this.math.element_fire >= 20){
+        if (this.mathHZ.element_fire >= 20){
           switch (this.math.eleexploit){
             case 0: {
               break;
@@ -618,7 +624,7 @@ export class FinalresultsComponent implements OnInit {
         break;
       }
       case "thunder":{
-        if (this.math.element_fire >= 20){
+        if (this.mathHZ.element_fire >= 20){
           switch (this.math.eleexploit){
             case 0: {
               break;
@@ -640,7 +646,7 @@ export class FinalresultsComponent implements OnInit {
         break;
       }
       case "dragon":{
-        if (this.math.element_fire >= 20){
+        if (this.mathHZ.element_fire >= 20){
           switch (this.math.eleexploit){
             case 0: {
               break;
@@ -686,10 +692,10 @@ export class FinalresultsComponent implements OnInit {
     this.results.crit_chance = this.critchance;
 
     //damage before crits
-    switch (this.math.DamageType){
+    switch (this.mathMV.DamageType){
       case "Sever": {
         //raw damage before crits
-        this.results.raw_no_crit = this.flatraw * (this.math.RawMV/100) * this.rawsharpnessmod * (this.math.hit_slash/100);
+        this.results.raw_no_crit = this.flatraw * (this.mathMV.RawMV/100) * this.rawsharpnessmod * (this.mathHZ.hit_slash/100);
         //raw damage with guaranteed crit
         this.results.raw_crit = this.results.raw_no_crit * (this.rawcritmod);
         //raw damage normalized for critical chance
@@ -698,23 +704,23 @@ export class FinalresultsComponent implements OnInit {
         //elemental damage before crits
         switch (this.math.eleType){
           case "fire":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_fire/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_fire/100);
             break;
           }
           case "water":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_water/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_water/100);
             break;
           }
           case "ice":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_ice/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_ice/100);
             break;
           }
           case "thunder":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_thunder/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_thunder/100);
             break;
           }
           case "dragon":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_dragon/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_dragon/100);
             break;
           }        
         }
@@ -731,7 +737,7 @@ export class FinalresultsComponent implements OnInit {
       case "Blunt": {
 
         //raw damage before crits
-        this.results.raw_no_crit = this.flatraw * (this.math.RawMV/100) * this.rawsharpnessmod * (this.math.hit_strike/100);
+        this.results.raw_no_crit = this.flatraw * (this.mathMV.RawMV/100) * this.rawsharpnessmod * (this.mathHZ.hit_strike/100);
         //raw damage with guaranteed crit
         this.results.raw_crit = this.results.raw_no_crit * (this.rawcritmod);
         //raw damage normalized for critical chance
@@ -740,23 +746,23 @@ export class FinalresultsComponent implements OnInit {
         //elemental damage before crits
         switch (this.math.eleType){
           case "fire":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_fire/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_fire/100);
             break;
           }
           case "water":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_water/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_water/100);
             break;
           }
           case "ice":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_ice/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_ice/100);
             break;
           }
           case "thunder":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_thunder/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_thunder/100);
             break;
           }
           case "dragon":{
-            this.results.ele_no_crit = this.flatele * (this.math.EleMV) * this.elesharpnessmod * (this.math.element_dragon/100);
+            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_dragon/100);
             break;
           }        
         }
