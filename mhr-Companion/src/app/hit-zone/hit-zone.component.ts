@@ -156,5 +156,4 @@ export class HitZoneComponent implements OnInit, OnDestroy {
 
 
 
-
 }
