@@ -9,6 +9,7 @@ import { HitZoneComponent } from './hit-zone/hit-zone.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { FinalresultsComponent } from './finalresults/finalresults.component';
 
 @NgModule({
   declarations: [	
@@ -16,7 +17,8 @@ import { HomeComponent } from './home/home.component';
     Motion_ZoneComponent,
     HitZoneComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    FinalresultsComponent
    ],
   imports: [
     BrowserModule,
