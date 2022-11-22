@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FinalresultsComponent } from './finalresults/finalresults.component';
+import { UserInputComponent } from './user-input/user-input.component';
 
 @NgModule({
   declarations: [	
@@ -18,7 +19,8 @@ import { FinalresultsComponent } from './finalresults/finalresults.component';
     HitZoneComponent,
     LoginComponent,
     HomeComponent,
-    FinalresultsComponent
+    FinalresultsComponent,
+    UserInputComponent
    ],
   imports: [
     BrowserModule,

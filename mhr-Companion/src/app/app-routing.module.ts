@@ -1,3 +1,4 @@
+import { UserInputComponent } from './user-input/user-input.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FinalresultsComponent } from './finalresults/finalresults.component';
@@ -10,7 +11,8 @@ const routes: Routes = [
 { path: 'pm-motion_zone', component: Motion_ZoneComponent },
 { path: 'app-hit-zone', component: HitZoneComponent },
 { path: 'login-logout', component: LoginComponent },
-{ path: 'app-finalresults', component: FinalresultsComponent },
+{ path: 'app-user-input', component: UserInputComponent },
+{ path: 'app-finalresults', component: FinalresultsComponent }
 ];
 
 @NgModule({
