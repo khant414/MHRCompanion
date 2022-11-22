@@ -70,8 +70,9 @@ recordRoutes.route('/hzsearch/:id').get(async function (_req, res) {
   const dbConnect = dbo.getDb();
   const hitzones = dbConnect.collection("HitzoneCollection");
   const query = { MonsterID: requestID };
+  const projection = { _id: 0, MonsterName: 0, MonsterID: 0 };
 
-  const cursor = hitzones.find(query);
+  const cursor = hitzones.find(query).project(projection);
 
   cursor.toArray(function (err, result) {
     if (err) {

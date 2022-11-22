@@ -67,6 +67,13 @@
           </th>
           <th>
             <img
+              src="assets/images/thunder.svg"
+              [style.width.px]="imageWidth"
+              [style.height.px]="imageHeight"
+            />
+          </th>
+          <th>
+            <img
               src="assets/images/dragon.svg"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
@@ -75,16 +82,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let hitzone of filteredHitzones">
+        <tr id="tableRow" *ngFor="let hitzone of filteredHitzones" [routerLink]="['/pm-motion_zone', hitzone.parts_name, hitzone.hit_slash, hitzone.hit_strike, hitzone.hit_shot, hitzone.element_fire, hitzone.element_water, hitzone.element_ice, hitzone.element_thunder, hitzone.element_dragon]">
           <td>Image?</td>
           <td>{{ hitzone.parts_name }}</td>
           <td>0</td>
           <td>{{ hitzone.hit_slash }}</td>
           <td>{{ hitzone.hit_strike }}</td>
-          <td>{{ hitzone.hit_shell }}</td>
+          <td>{{ hitzone.hit_shot }}</td>
           <td>{{ hitzone.element_fire }}</td>
           <td>{{ hitzone.element_water }}</td>
           <td>{{ hitzone.element_ice }}</td>
+          <td>{{ hitzone.element_thunder }}</td>
           <td>{{ hitzone.element_dragon }}</td>
         </tr>
       </tbody>
