@@ -8,9 +8,13 @@ import { Motion_ZoneComponent } from './motion_zones/motion_zones.component';
 import { HitZoneComponent } from './hit-zone/hit-zone.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+
+import { AboutUsComponent } from './about-us/about-us.component';
+
 import { HomeComponent } from './home/home.component';
 import { FinalresultsComponent } from './finalresults/finalresults.component';
 import { UserInputComponent } from './user-input/user-input.component';
+
 
 @NgModule({
   declarations: [	
@@ -18,9 +22,13 @@ import { UserInputComponent } from './user-input/user-input.component';
     Motion_ZoneComponent,
     HitZoneComponent,
     LoginComponent,
+
+    AboutUsComponent,
+
     HomeComponent,
     FinalresultsComponent,
     UserInputComponent
+
    ],
   imports: [
     BrowserModule,
