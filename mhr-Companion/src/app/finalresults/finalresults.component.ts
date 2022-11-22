@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IResults } from './resultscontainer';
 
 @Component({
@@ -90,9 +91,35 @@ export class FinalresultsComponent implements OnInit {
 
   
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    //router call from the previous page that stores our motion value information
+    const MoveID = this.route.snapshot.paramMap.get('MoveID');
+    const MoveName = this.route.snapshot.paramMap.get('MoveName');
+    const DamageType = this.route.snapshot.paramMap.get('DamageType');
+    const RawMV = this.route.snapshot.paramMap.get('RawMV');
+    const EleMV = this.route.snapshot.paramMap.get('EleMV');
+    const WeaponName = this.route.snapshot.paramMap.get('WeaponName');
+
+    //page title doesn't actually have to be updated... this is just to show what we have
+    this.pageTitle += ` MoveID: ${MoveID}` + ` MoveName: ${MoveName}` + ` DamageType: ${DamageType}`
+    + ` RawMV: ${RawMV}` + ` EleMV: ${EleMV}` + ` WeaponName: ${WeaponName}`;
+    
+    //check that these values are not null, then add them to the mv container
+    //now we can do whatever we want with them
+    if (MoveID != null && MoveName != null && DamageType != null && RawMV != null && EleMV != null && WeaponName != null){
+      this.mathMV.MoveID = Number(MoveID);
+      this.mathMV.MoveName = MoveName;
+      this.mathMV.DamageType = DamageType;
+      this.mathMV.RawMV = Number(RawMV);
+      this.mathMV.EleMV = Number(EleMV);
+      this.mathMV.WeaponName = WeaponName;
+    }
+
+
+
+
     this.flatraw = this.math.raw;
     this.critchance = this.math.critchance;
 
