@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { MongoContainer } from './user-input';
+
 
 @Component({
   selector: 'app-user-input',
@@ -8,8 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class UserInputComponent implements OnInit {
   display: boolean = true;
 
-  SaveCharData():void {
+  inputMongoData: MongoContainer[] = [];
+  
+  
 
+  SaveCharData():void {
+    /*
+    
+
+    googleId = sessionStorage.getItem('ID:')
+    inputMongoData.append(googleId);
+    foreach var (item) in inputFormData {
+      inputMongoData.append(item)
+    }
+    
+
+    */
   }
 
   CheckForDisplay():void {
@@ -23,7 +40,6 @@ export class UserInputComponent implements OnInit {
     }
   }
   }
-  constructor() { }
 
   ngOnInit(): void {
     this.CheckForDisplay();

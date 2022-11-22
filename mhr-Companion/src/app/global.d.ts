@@ -62,5 +62,5 @@ declare global {
         WeaponName: string;
     }
     
-
+    
 }
