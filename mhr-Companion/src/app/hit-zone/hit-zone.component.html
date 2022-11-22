@@ -82,7 +82,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="tableRow" *ngFor="let hitzone of filteredHitzones" routerLink = '/pm-motion_zone'>
+        <tr id="tableRow" *ngFor="let hitzone of filteredHitzones" [routerLink]="['/pm-motion_zone', hitzone.parts_name, hitzone.hit_slash, hitzone.hit_strike, hitzone.hit_shot, hitzone.element_fire, hitzone.element_water, hitzone.element_ice, hitzone.element_thunder, hitzone.element_dragon]">
           <td>Image?</td>
           <td>{{ hitzone.parts_name }}</td>
           <td>0</td>
