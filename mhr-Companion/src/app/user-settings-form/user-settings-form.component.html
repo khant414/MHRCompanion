@@ -1,0 +1,344 @@
+<div class="container" *ngIf="display">
+  <h2>Input Your Character Stats</h2>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <!--googleid input-->
+    <div class="form-group">
+      <label for="googleid" class="form-label"> googleid: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="googleid"
+        name="googleid"
+        formcontrolName="googleid"
+        placeholder=""
+        [(ngModel)]="userSettings.googleid"
+      />
+    </div>
+    <!--raw input-->
+    <div class="form-group">
+      <label for="raw" class="form-label"> raw: </label>
+      <input
+        type="number"
+        min="0"
+        max="400"
+        class="form-control w-25"
+        id="raw"
+        name="raw"
+        formcontrolName="raw"
+        placeholder=""
+        [(ngModel)]="userSettings.raw"
+        required
+      />
+    </div>
+    <!--sharpness input-->
+    <div class="form-group">
+      <label for="sharpness" class="form-label"> sharpness: </label>
+      <select
+        class="form-control w-25"
+        id="sharpness"
+        name="sharpness"
+        formcontrolName="sharpness"
+        [(ngModel)]="userSettings.sharpness"
+      >
+        <option>Red</option>
+        <option>Orange</option>
+        <option>Yellow</option>
+        <option>Green</option>
+        <option>Blue</option>
+        <option>White</option>
+        <option>Purple</option>
+      </select>
+    </div>
+    <!--eleType input-->
+    <div class="form-group">
+      <label for="eleType" class="form-label"> Element Type: </label>
+      <input
+        type="text"
+        class="form-control w-25"
+        id="eleType"
+        name="eleType"
+        placeholder=""
+        [(ngModel)]="userSettings.eleType"
+        required
+        #eleTypeField="ngModel"
+        (blur)="OnBlur(eleTypeField)"
+        [class.field-error]="form.submitted && eleTypeField.invalid"
+      >
+        <!-- <option>Fire</option>
+        <option>Water</option>
+        <option>Thunder</option>
+        <option>Ice</option>
+        <option>Dragon</option> -->
+      <!-- </select> -->
+      <div
+        [hidden]="!form.submitted || eleTypeField.valid"
+        class="alert alert-danger w-25"
+      >
+        Please Enter an Element Type
+      </div>
+
+      <h3>dirty: {{ eleTypeField.dirty }}</h3>
+      <h3>pristine: {{ eleTypeField.pristine }}</h3>
+      <h3>touched: {{ eleTypeField.touched }}</h3>
+      <h3>untouched: {{ eleTypeField.untouched }}</h3>
+      <h3>valid: {{ eleTypeField.valid }}</h3>
+      <h3>invalid: {{ eleTypeField.invalid }}</h3>
+    </div>
+    <!--ele input-->
+    <div class="form-group">
+      <label for="ele" class="form-label"> ele: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="ele"
+        name="ele"
+        formcontrolName="ele"
+        placeholder=""
+        [(ngModel)]="userSettings.ele"
+      />
+    </div>
+    <!--critchance input-->
+    <div class="form-group">
+      <label for="critchance" class="form-label"> critchance: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="critchance"
+        name="critchance"
+        formcontrolName="critchance"
+        placeholder=""
+        [(ngModel)]="userSettings.critchance"
+      />
+    </div>
+    <!--wex input-->
+    <div class="form-group">
+      <label for="wex" class="form-label"> wex: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="wex"
+        name="wex"
+        formcontrolName="wex"
+        placeholder=""
+        [(ngModel)]="userSettings.wex"
+      />
+    </div>
+    <!--critboost input-->
+    <div class="form-group">
+      <label for="critboost" class="form-label"> critboost: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="critboost"
+        name="critboost"
+        formcontrolName="critboost"
+        placeholder=""
+        [(ngModel)]="userSettings.critboost"
+      />
+    </div>
+    <!--criteye input-->
+    <div class="form-group">
+      <label for="criteye" class="form-label"> criteye: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="criteye"
+        name="criteye"
+        formcontrolName="criteye"
+        placeholder=""
+        [(ngModel)]="userSettings.criteye"
+      />
+    </div>
+    <!--atkboost input-->
+    <div class="form-group">
+      <label for="atkboost" class="form-label"> atkboost: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="atkboost"
+        name="atkboost"
+        formcontrolName="atkboost"
+        placeholder=""
+        [(ngModel)]="userSettings.atkboost"
+      />
+    </div>
+    <!--agitator input-->
+    <div class="form-group">
+      <label for="agitator" class="form-label"> agitator: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="agitator"
+        name="agitator"
+        formcontrolName="agitator"
+        placeholder=""
+        [(ngModel)]="userSettings.agitator"
+      />
+    </div>
+    <!--peakperf input-->
+    <div class="form-group">
+      <label for="peakperf" class="form-label"> peakperf: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="peakperf"
+        name="peakperf"
+        formcontrolName="peakperf"
+        placeholder=""
+        [(ngModel)]="userSettings.peakperf"
+      />
+    </div>
+    <!--resentment input-->
+    <div class="form-group">
+      <label for="resentment" class="form-label"> resentment: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="resentment"
+        name="resentment"
+        formcontrolName="resentment"
+        placeholder=""
+        [(ngModel)]="userSettings.resentment"
+      />
+    </div>
+    <!--resuscitate input-->
+    <div class="form-group">
+      <label for="resuscitate" class="form-label"> resuscitate: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="resuscitate"
+        name="resuscitate"
+        formcontrolName="resuscitate"
+        placeholder=""
+        [(ngModel)]="userSettings.resuscitate"
+      />
+    </div>
+    <!--maxmight input-->
+    <div class="form-group">
+      <label for="maxmight" class="form-label"> maxmight: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="maxmight"
+        name="maxmight"
+        formcontrolName="maxmight"
+        placeholder=""
+        [(ngModel)]="userSettings.maxmight"
+      />
+    </div>
+    <!--critele input-->
+    <div class="form-group">
+      <label for="critele" class="form-label"> critele: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="critele"
+        name="critele"
+        formcontrolName="critele"
+        placeholder=""
+        [(ngModel)]="userSettings.critele"
+      />
+    </div>
+    <!--offensiveguard input-->
+    <div class="form-group">
+      <label for="offensiveguard" class="form-label"> offensiveguard: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="offensiveguard"
+        name="offensiveguard"
+        formcontrolName="offensiveguard"
+        placeholder=""
+        [(ngModel)]="userSettings.offensiveguard"
+      />
+    </div>
+    <!--eleatkup input-->
+    <div class="form-group">
+      <label for="eleatkup" class="form-label"> eleatkup: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="eleatkup"
+        name="eleatkup"
+        formcontrolName="eleatkup"
+        placeholder=""
+        [(ngModel)]="userSettings.eleatkup"
+      />
+    </div>
+    <!--counterstrike input-->
+    <div class="form-group">
+      <label for="counterstrike" class="form-label"> counterstrike: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="counterstrike"
+        name="counterstrike"
+        formcontrolName="counterstrike"
+        placeholder=""
+        [(ngModel)]="userSettings.counterstrike"
+      />
+    </div>
+    <!--eleexploit input-->
+    <div class="form-group">
+      <label for="eleexploit" class="form-label"> eleexploit: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="eleexploit"
+        name="eleexploit"
+        formcontrolName="eleexploit"
+        placeholder=""
+        [(ngModel)]="userSettings.eleexploit"
+        required
+      />
+    </div>
+    <!--mailofhellfire input-->
+    <div class="form-group">
+      <label for="mailofhellfire" class="form-label"> mailofhellfire: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="mailofhellfire"
+        name="mailofhellfire"
+        formcontrolName="mailofhellfire"
+        placeholder=""
+        [(ngModel)]="userSettings.mailofhellfire"
+      />
+    </div>
+    <!--dereliction input-->
+    <div class="form-group">
+      <label for="dereliction" class="form-label"> dereliction: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="dereliction"
+        name="dereliction"
+        formcontrolName="dereliction"
+        placeholder=""
+        [(ngModel)]="userSettings.dereliction"
+      />
+    </div>
+    <!--burst input-->
+    <div class="form-group">
+      <label for="burst" class="form-label"> burst: </label>
+      <input
+        type="number"
+        class="form-control w-25"
+        id="burst"
+        name="burst"
+        formcontrolName="burst"
+        placeholder=""
+        [(ngModel)]="userSettings.burst"
+      />
+    </div>
+
+    <button class="btn btn-primary">Send</button>
+    {{ form.valueChanges | json }}
+    <div style="background-color: green">form value changes</div>
+    <br /><br />
+    {{ form.value | json }}
+    <div style="background-color: green">form object</div>
+    <br style="background-color: green" /><br />
+  </form>
+</div>
