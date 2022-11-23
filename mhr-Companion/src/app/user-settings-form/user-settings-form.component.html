@@ -1,6 +1,6 @@
-<div class="container" *ngIf="display">
+<div class="container" *ngIf="display" [hidden]="form.submitted">
   <h2>Input Your Character Stats</h2>
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" >
     <!--googleid input-->
     <div class="form-group">
       <label for="googleid" class="form-label"> googleid: </label>

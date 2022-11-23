@@ -2,8 +2,8 @@ import { UserSettingsService } from './user-settings.service';
           import { Component, OnInit } from '@angular/core';
           import { NgForm, NgModel } from '@angular/forms';
           import { UserSettings } from './user-settings';
-import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+        import { HttpErrorResponse } from '@angular/common/http';
+          import { throwError } from 'rxjs';
 
           @Component({
           selector: 'app-user-settings-form',
@@ -56,9 +56,13 @@ import { throwError } from 'rxjs';
         
           onSubmit(form:NgForm) {
             console.log('in onSubmit: ', form.valid)
+            //window.location.href = '/app-hit-zone'
             this.userSettingsService.postUserSettingsForm(this.userSettings).subscribe(
               result => console.log('success: ', result),
-              error => console.log('error: ', error)
+              error => {
+                console.log('error: ', error) 
+                this.handleError(error) 
+              }
             );
           }
           CheckForDisplay():void {

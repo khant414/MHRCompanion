@@ -1,5 +1,3 @@
-import { Int32 } from "mongodb";
-
 export interface UserSettings {
         googleid:number;
         raw: number;
