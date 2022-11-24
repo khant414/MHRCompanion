@@ -122,6 +122,42 @@ recordRoutes.route('/mvsearch2/:wep').get(async function (_req, res) {
   });
 });
 
+recordRoutes.route('/userSettings/:userid').get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
+
+  console.log(_req.params.userid);
+  const requestID = parseInt(_req.params.userid);
+  const userinfo = dbConnect.collection("UserInputCollection");
+  const query = { googleid: requestID };
+  const projection = { _id: 0, googleid: 0, last_modified: 0 };
+
+  const cursor = userinfo.find(query).project(projection);
+
+  cursor.toArray(function (err, result) {
+    if (err) {
+      res.status(400).send('Error fetching userinfo!');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+recordRoutes.route('/userSettings').get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
+
+  dbConnect
+    .collection('UserInputCollection')
+    .find({})
+    .limit(50)
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(400).send('Error fetching MVs!');
+      } else {
+        res.json(result);
+      }
+    });
+});
+
 
 // This section will help you create a new record.
 recordRoutes.route('/userSettings/recordUserSettings').post(function (req, res) {
@@ -164,6 +200,50 @@ recordRoutes.route('/userSettings/recordUserSettings').post(function (req, res) 
       }
     });
 });
+
+recordRoutes.route('/userSettings/overwriteUserSettings/:userid').put(function (req, res) {
+  const dbConnect = dbo.getDb();
+  
+  const userSettings = {
+    googleid: req.body.googleid,
+    last_modified: new Date(),
+    raw: req.body.raw,
+    sharpness: req.body.sharpness,
+    eleType: req.body.eleType,
+    ele: req.body.ele,
+    critchance: req.body.critchance,
+    wex: req.body.wex,
+    critboost: req.body.critboost,
+    criteye: req.body.criteye,
+    atkboost: req.body.atkboost,
+    agitator: req.body.agitator,
+    peakperf: req.body.peakperf,
+    resentment: req.body.resentment,
+    resuscitate: req.body.resuscitate,
+    maxmight: req.body.maxmight,
+    critele: req.body.critele,
+    offensiveguard: req.body.offensiveguard,
+    eleatkup: req.body.eleatkup,
+    eleexploit: req.body.eleexploit,
+    mailofhellfire: req.body.mailofhellfire,
+    dereliction: req.body.dereliction,
+    burst: req.body.burst 
+  };
+
+  dbConnect
+    .collection('UserInputCollection')
+    .update(userSettings, function (err, result) {
+      if (err) {
+        res.status(400).send('Error updating stats!');
+      } else {
+        console.log(`Updated stats with id ${result.insertedId}`);
+        res.status(204).send();
+      }
+    });
+});
+
+
+
 
 // // This section will help you update a record by id.
 // recordRoutes.route('/listings/updateLike').post(function (req, res) {
