@@ -201,9 +201,11 @@ recordRoutes.route('/userSettings/recordUserSettings').post(function (req, res) 
     });
 });
 
-recordRoutes.route('/userSettings/overwriteUserSettings/:userid').put(function (req, res) {
+recordRoutes.route('/userSettings/overwriteUserSettings').put(function (req, res) {
   const dbConnect = dbo.getDb();
-  
+  const requestID = parseInt(req.params.googleid);
+  const query = { googleid: requestID };
+  const cursor = userinfo.find(query);
   const userSettings = {
     googleid: req.body.googleid,
     last_modified: new Date(),
@@ -229,14 +231,13 @@ recordRoutes.route('/userSettings/overwriteUserSettings/:userid').put(function (
     dereliction: req.body.dereliction,
     burst: req.body.burst 
   };
-
   dbConnect
     .collection('UserInputCollection')
-    .update(userSettings, function (err, result) {
+    cursor.updateOne(userSettings, function (err, result) {
       if (err) {
         res.status(400).send('Error updating stats!');
       } else {
-        console.log(`Updated stats with id ${result.insertedId}`);
+        console.log(`Updated stats with id ${req.insertedId}`);
         res.status(204).send();
       }
     });

@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem('Picture:', "");
     this.display = false;
     console.log("in logout " + this.display);
-    window.location.href = '/';
+    //window.location.href = '/';
   }
 
   //constructor(private userService: UserService) { }  // don't need a user server

@@ -1,6 +1,6 @@
 <div class="container" *ngIf="display" [hidden]="form.submitted">
   <h2>Input Your Character Stats</h2>
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)" >
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <!--googleid input-->
     <div class="form-group">
       <label for="googleid" class="form-label"> googleid: </label>
@@ -63,8 +63,8 @@
         #eleTypeField="ngModel"
         (blur)="OnBlur(eleTypeField)"
         [class.field-error]="form.submitted && eleTypeField.invalid"
-      >
-        <!-- <option>Fire</option>
+      />
+      <!-- <option>Fire</option>
         <option>Water</option>
         <option>Thunder</option>
         <option>Ice</option>
@@ -77,12 +77,12 @@
         Please Enter an Element Type
       </div>
 
-      <h3>dirty: {{ eleTypeField.dirty }}</h3>
+      <!-- <h3>dirty: {{ eleTypeField.dirty }}</h3>
       <h3>pristine: {{ eleTypeField.pristine }}</h3>
       <h3>touched: {{ eleTypeField.touched }}</h3>
       <h3>untouched: {{ eleTypeField.untouched }}</h3>
       <h3>valid: {{ eleTypeField.valid }}</h3>
-      <h3>invalid: {{ eleTypeField.invalid }}</h3>
+      <h3>invalid: {{ eleTypeField.invalid }}</h3> -->
     </div>
     <!--ele input-->
     <div class="form-group">
