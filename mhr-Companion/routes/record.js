@@ -166,6 +166,7 @@ recordRoutes
       last_modified: new Date(),
       raw: req.body.raw,
       sharpness: req.body.sharpness,
+      counterstrike: req.body.counterstrike,
       eleType: req.body.eleType,
       ele: req.body.ele,
       critchance: req.body.critchance,
@@ -211,6 +212,7 @@ recordRoutes
     userinfo.replaceOne(
       { googleid: idcheck },
       {
+        googleid: idcheck,
         last_modified: new Date(),
         raw: req.body.raw,
         sharpness: req.body.sharpness,
@@ -218,6 +220,7 @@ recordRoutes
         ele: req.body.ele,
         critchance: req.body.critchance,
         wex: req.body.wex,
+        counterstrike: req.body.counterstrike,
         critboost: req.body.critboost,
         criteye: req.body.criteye,
         atkboost: req.body.atkboost,
