@@ -97,8 +97,8 @@ import { Router } from '@angular/router';
 
            if(this.userSettings.atkboost != null) {
               this.userSettingsService.putUserSettingsForm(this.userSettings).subscribe(
-                result => { console.log('result:', result);
-                this.router.navigate(['/app-hit-zone']);
+                result => { 
+                  console.log('result:', result);
                 },
                 error => {
                   console.log('error: ', error) 
@@ -110,7 +110,6 @@ import { Router } from '@angular/router';
               this.userSettingsService.postUserSettingsForm(this.userSettings).subscribe(
                 result => {
                   console.log('success: ', result);
-                  this.router.navigate(['/app-hit-zone']);
                 },
                 error => {
                   console.log('error: ', error) 
@@ -118,7 +117,7 @@ import { Router } from '@angular/router';
                 }
               );
             }
-            
+            this.router.navigate(['/app-hit-zone']);
             
           }
 
