@@ -30,6 +30,6 @@ export class UserSettingsService {
     }
 
     putUserSettingsForm(userSettings: UserSettings) : Observable<any> {
-        return this.http.put(this.userSettingsPutUrl, userSettings);
+        return this.http.post(this.userSettingsPutUrl, userSettings);
     }
 }

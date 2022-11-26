@@ -4,6 +4,7 @@ import { UserSettingsService } from './user-settings.service';
           import { UserSettings } from './user-settings';
         import { HttpErrorResponse } from '@angular/common/http';
           import { of, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
           @Component({
           selector: 'app-user-settings-form',
@@ -44,7 +45,8 @@ import { UserSettingsService } from './user-settings.service';
             
 
           
-          constructor(private userSettingsService: UserSettingsService) { }
+          constructor(private userSettingsService: UserSettingsService,
+              private router: Router) { }
 
           ngOnInit(): void {
             this.CheckForDisplay();
@@ -95,7 +97,9 @@ import { UserSettingsService } from './user-settings.service';
 
            if(this.userSettings.atkboost != null) {
               this.userSettingsService.putUserSettingsForm(this.userSettings).subscribe(
-                result => console.log('result:', result),
+                result => { 
+                  console.log('result:', result);
+                },
                 error => {
                   console.log('error: ', error) 
                   this.handleError(error) 
@@ -104,14 +108,16 @@ import { UserSettingsService } from './user-settings.service';
             }
             else {
               this.userSettingsService.postUserSettingsForm(this.userSettings).subscribe(
-                result => console.log('success: ', result),
+                result => {
+                  console.log('success: ', result);
+                },
                 error => {
                   console.log('error: ', error) 
                   this.handleError(error) 
                 }
               );
             }
-            
+            this.router.navigate(['/app-hit-zone']);
             
           }
 
