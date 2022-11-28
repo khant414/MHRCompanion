@@ -45,6 +45,19 @@ recordRoutes.route("/hitzonenames").get(async function (_req, res) {
   });
 });
 
+//just distinct monster names
+recordRoutes.route("/monsternames").get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
+  const hitzones = dbConnect.collection("HitzoneNewCollection");
+  const fieldName = "MonsterName"
+  const distinctValues = await hitzones.distinct(fieldName);
+
+  console.log(distinctValues);
+
+  res.json(distinctValues);
+
+});
+
 //this route returns all motion values
 recordRoutes.route("/motionvalues").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
@@ -88,6 +101,26 @@ recordRoutes.route("/hzsearchnew/:id").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
   const hitzones = dbConnect.collection("HitzoneNewCollection");
   const query = { MonsterID: requestID };
+  const projection = { _id: 0, MonsterName: 0, MonsterID: 0 };
+
+  const cursor = hitzones.find(query).project(projection);
+
+  cursor.toArray(function (err, result) {
+    if (err) {
+      res.status(400).send("Error fetching hitzones!");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+//search by name
+recordRoutes.route("/hzsearchname/:name").get(async function (_req, res) {
+  console.log(_req.params.name);
+  const requestID = _req.params.name;
+  const dbConnect = dbo.getDb();
+  const hitzones = dbConnect.collection("HitzoneNewCollection");
+  const query = { MonsterName: requestID };
   const projection = { _id: 0, MonsterName: 0, MonsterID: 0 };
 
   const cursor = hitzones.find(query).project(projection);
