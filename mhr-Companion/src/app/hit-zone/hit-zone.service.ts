@@ -111,15 +111,15 @@ export class HitzoneService {
     }
 
 
-    private hitzoneUrl = 'http://localhost:5000/hzsearch/1';
+    private hitzoneUrl = 'http://localhost:5000/hzsearchnew/1';
     constructor(private http:HttpClient) { }
 
-    // getGoreHitzones(): Observable<IHitzone[]>{
-    //     return this.http.get<IHitzone[]>(this.hitzoneUrl).pipe(
-    //         tap(data => console.log('All: ', JSON.stringify(data))),
-    //         catchError(this.handleError)
-    //     );
-    // }
+    getGoreHitzones(): Observable<IHitzone[]>{
+        return this.http.get<IHitzone[]>(this.hitzoneUrl).pipe(
+            tap(data => console.log('All: ', JSON.stringify(data))),
+            catchError(this.handleError)
+        );
+    }
 
     private handleError(err: HttpErrorResponse){
         let errorMessage = '';

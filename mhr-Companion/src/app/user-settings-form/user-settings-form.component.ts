@@ -54,7 +54,7 @@ import { Router } from '@angular/router';
           }
             FillInputBoxes() {
               this.userSettingsService.getUserSettingsForm().subscribe(
-                result => {
+                result => { 
                   console.log('success: ', result);
                   this.userSettings.googleid = result[0].googleid;
                   this.userSettings.raw = result[0].raw;
@@ -79,6 +79,7 @@ import { Router } from '@angular/router';
                   this.userSettings.mailofhellfire = result[0].mailofhellfire;
                   this.userSettings.dereliction = result[0].dereliction;
                   this.userSettings.burst = result[0].burst;
+
               },
                 error => {
                 console.log('error: ', error) 
@@ -92,6 +93,12 @@ import { Router } from '@angular/router';
         
           onSubmit(form:NgForm) {
             console.log('in onSubmit: ', form.valid)
+
+            //saving to local storage
+            let savedSettings = this.userSettings;
+            localStorage.setItem("savedSettings", JSON.stringify(savedSettings));
+
+
             //window.location.href = '/app-hit-zone'
             
 

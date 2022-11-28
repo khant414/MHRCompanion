@@ -122,12 +122,12 @@ export class HitZoneComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     
-    this.hitzones = this.hitzoneService.getHitzones();
+    //this.hitzones = this.hitzoneService.getHitzones();
     //call the HitzoneService to fill "hitzones" array with data
-    // this.sub = this.hitzoneService.getGoreHitzones().subscribe({
-    //   next: hitzones => this.hitzones = hitzones,
-    //   error: err => this.errorMessage = err
-    // });
+    this.sub = this.hitzoneService.getGoreHitzones().subscribe({
+      next: hitzones => this.hitzones = hitzones,
+      error: err => this.errorMessage = err
+    });
 
 
     //this.hitzones = this.hitzoneService.getHitzones();

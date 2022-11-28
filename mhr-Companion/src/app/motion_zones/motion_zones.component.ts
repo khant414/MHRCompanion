@@ -96,7 +96,9 @@ export class Motion_ZoneComponent implements OnInit {
             this.currentHZ.element_ice = Number(element_ice);
             this.currentHZ.element_thunder = Number(element_thunder);
             this.currentHZ.element_dragon = Number(element_dragon);
-        }   
+        }
+        
+        localStorage.setItem("hitzones", JSON.stringify(this.currentHZ));
         
 
 

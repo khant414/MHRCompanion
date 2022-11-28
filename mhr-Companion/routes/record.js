@@ -81,6 +81,26 @@ recordRoutes.route("/hzsearch/:id").get(async function (_req, res) {
   });
 });
 
+
+recordRoutes.route("/hzsearchnew/:id").get(async function (_req, res) {
+  console.log(_req.params.id);
+  const requestID = parseInt(_req.params.id);
+  const dbConnect = dbo.getDb();
+  const hitzones = dbConnect.collection("HitzoneNewCollection");
+  const query = { MonsterID: requestID };
+  const projection = { _id: 0, MonsterName: 0, MonsterID: 0 };
+
+  const cursor = hitzones.find(query).project(projection);
+
+  cursor.toArray(function (err, result) {
+    if (err) {
+      res.status(400).send("Error fetching hitzones!");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 recordRoutes.route("/mvsearch/:id").get(async function (_req, res) {
   console.log(_req.params.id);
   const requestID = parseInt(_req.params.id);

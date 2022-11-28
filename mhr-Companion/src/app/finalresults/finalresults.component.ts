@@ -83,7 +83,7 @@ export class FinalresultsComponent implements OnInit {
   mathMV: MVContainer = {
     "MoveID": 2,
     "MoveName": "Mid Thrust I/II",
-    "DamageType": "Sever",
+    "DamageType": "sever",
     "RawMV": 25,
     "EleMV": 1,
     "WeaponName": "LA"
@@ -111,11 +111,52 @@ export class FinalresultsComponent implements OnInit {
     if (MoveID != null && MoveName != null && DamageType != null && RawMV != null && EleMV != null && WeaponName != null){
       this.mathMV.MoveID = Number(MoveID);
       this.mathMV.MoveName = MoveName;
-      this.mathMV.DamageType = DamageType;
+      this.mathMV.DamageType = DamageType.toLocaleLowerCase();
       this.mathMV.RawMV = Number(RawMV);
       this.mathMV.EleMV = Number(EleMV);
       this.mathMV.WeaponName = WeaponName;
     }
+
+    //saved settings
+    let importedHZ = JSON.parse(localStorage.getItem("hitzones")!);
+    this.mathHZ.parts_name = importedHZ.parts_name;
+    this.mathHZ.hit_slash = Number(importedHZ.hit_slash);
+    this.mathHZ.hit_strike = Number(importedHZ.hit_strike);
+    this.mathHZ.hit_shot = Number(importedHZ.hit_shot);
+    this.mathHZ.element_fire = Number(importedHZ.element_fire);
+    this.mathHZ.element_water = Number(importedHZ.element_water);
+    this.mathHZ.element_ice = Number(importedHZ.element_ice);
+    this.mathHZ.element_thunder = Number(importedHZ.element_thunder);
+    this.mathHZ.element_dragon = Number(importedHZ.element_dragon);
+
+    let importedUser = JSON.parse(localStorage.getItem("savedSettings")!);
+    this.math.raw = Number(importedUser.raw);
+    this.math.sharpness = importedUser.sharpness.toLocaleLowerCase();
+    this.math.eleType = importedUser.eleType.toLocaleLowerCase();
+    this.math.ele = Number(importedUser.ele);
+    this.math.critchance = Number(importedUser.critchance);
+    this.math.wex = Number(importedUser.wex);
+    this.math.critboost = Number(importedUser.critboost);
+    this.math.criteye = Number(importedUser.criteye);
+    this.math.atkboost = Number(importedUser.atkboost);
+    this.math.agitator = Number(importedUser.agitator);
+    this.math.peakperf = Number(importedUser.peakperf);
+    this.math.resentment = Number(importedUser.resentment);
+    this.math.resuscitate = Number(importedUser.resuscitate);
+    this.math.maxmight = Number(importedUser.maxmight);
+    this.math.critele = Number(importedUser.critele);
+    this.math.offensiveguard = Number(importedUser.offensiveguard);
+    this.math.eleatkup = Number(importedUser.eleatkup);
+    this.math.counterstrike = Number(importedUser.counterstrike);
+    this.math.eleexploit = Number(importedUser.eleexploit);
+    this.math.mailofhellfire = Number(importedUser.mailofhellfire);
+    this.math.dereliction = Number(importedUser.dereliction);
+    this.math.burst = Number(importedUser.burst);
+    console.log(this.math);
+
+
+
+    
 
 
 
@@ -395,7 +436,7 @@ export class FinalresultsComponent implements OnInit {
     //crit chance calculation
 
     //check if move is blunt AND target is blunt weakspot or sever AND sever weakspot then wex calculations are done
-    switch ((this.mathMV.DamageType == "Blunt" && this.mathHZ.hit_strike >= 45) || (this.mathMV.DamageType == "Sever" && this.mathHZ.hit_slash >= 45) ){
+    switch ((this.mathMV.DamageType == "blunt" && this.mathHZ.hit_strike >= 45) || (this.mathMV.DamageType == "sever" && this.mathHZ.hit_slash >= 45) ){
       case false: {
         break;
       }
@@ -720,7 +761,7 @@ export class FinalresultsComponent implements OnInit {
 
     //damage before crits
     switch (this.mathMV.DamageType){
-      case "Sever": {
+      case "sever": {
         //raw damage before crits
         this.results.raw_no_crit = this.flatraw * (this.mathMV.RawMV/100) * this.rawsharpnessmod * (this.mathHZ.hit_slash/100);
         //raw damage with guaranteed crit
@@ -761,7 +802,7 @@ export class FinalresultsComponent implements OnInit {
         break;
       }    
 
-      case "Blunt": {
+      case "blunt": {
 
         //raw damage before crits
         this.results.raw_no_crit = this.flatraw * (this.mathMV.RawMV/100) * this.rawsharpnessmod * (this.mathHZ.hit_strike/100);
@@ -804,14 +845,31 @@ export class FinalresultsComponent implements OnInit {
       }
 
     }
+    console.log(this.results);
+    console.log(this.flatele);
+    console.log(this.elecritmod);
 
     this.results.sum_no_crit = this.results.raw_no_crit + this.results.ele_no_crit;
     this.results.sum_crit = this.results.raw_crit + this.results.ele_crit;
     this.results.sum_avg = this.results.raw_avg + this.results.ele_avg;
 
+    this.results.sum_no_crit = Math.round(this.results.sum_no_crit);
+    this.results.raw_no_crit = Math.round(this.results.raw_no_crit);
+    this.results.ele_no_crit = Math.round(this.results.ele_no_crit);
+    this.results.sum_crit = Math.round(this.results.sum_crit);
+    this.results.raw_crit = Math.round(this.results.raw_crit);
+    this.results.ele_crit = Math.round(this.results.ele_crit);
+    this.results.sum_avg = Math.round(this.results.sum_avg);
+    this.results.raw_avg = Math.round(this.results.raw_avg);
+    this.results.ele_avg = Math.round(this.results.ele_avg);
+
 
     
 
+
+  }
+
+  updateText(){
 
   }
 
