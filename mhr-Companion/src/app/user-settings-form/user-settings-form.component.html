@@ -52,30 +52,25 @@
     <!--eleType input-->
     <div class="form-group">
       <label for="eleType" class="form-label"> Element Type: </label>
-      <input
+      <select
         type="text"
         class="form-control w-25"
         id="eleType"
         name="eleType"
         placeholder=""
-        [(ngModel)]="userSettings.eleType"
-        required
-        #eleTypeField="ngModel"
-        (blur)="OnBlur(eleTypeField)"
-        [class.field-error]="form.submitted && eleTypeField.invalid"
-      />
-      <!-- <option>Fire</option>
+        [(ngModel)]="userSettings.eleType">
+        <option>Fire</option>
         <option>Water</option>
         <option>Thunder</option>
         <option>Ice</option>
-        <option>Dragon</option> -->
-      <!-- </select> -->
-      <div
+        <option>Dragon</option>
+      </select>
+      <!-- <div
         [hidden]="!form.submitted || eleTypeField.valid"
         class="alert alert-danger w-25"
       >
         Please Enter an Element Type
-      </div>
+      </div> -->
 
       <!-- <h3>dirty: {{ eleTypeField.dirty }}</h3>
       <h3>pristine: {{ eleTypeField.pristine }}</h3>
