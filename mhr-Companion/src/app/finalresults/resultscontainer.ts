@@ -13,3 +13,7 @@ export interface IResults {
     ele_avg: number;
     sum_avg: number;
 }
+
+export interface ISkillName{
+    skill_name: string;
+}

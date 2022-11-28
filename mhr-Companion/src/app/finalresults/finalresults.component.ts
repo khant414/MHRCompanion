@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IResults } from './resultscontainer';
+import { IResults, ISkillName } from './resultscontainer';
+import { FinalResultsService } from './finalresults.service';
 
 @Component({
   selector: 'app-finalresults',
@@ -8,6 +9,8 @@ import { IResults } from './resultscontainer';
   styleUrls: ['./finalresults.component.css']
 })
 export class FinalresultsComponent implements OnInit {
+
+  skillSelect: number = 0;
 
   pageTitle: string = 'Final Results';
   imageWidth: number = 16;
@@ -28,6 +31,22 @@ export class FinalresultsComponent implements OnInit {
   eletotalnocrit: number = 0;
 
   results: IResults = {
+    "crit_chance": 0,
+    
+    "raw_no_crit": 0,
+    "ele_no_crit": 0,
+    "sum_no_crit": 0,
+
+    "raw_crit": 0,
+    "ele_crit": 0,
+    "sum_crit": 0,
+
+    "raw_avg": 0,
+    "ele_avg": 0,
+    "sum_avg": 0
+  };
+
+  results2: IResults = {
     "crit_chance": 0,
     
     "raw_no_crit": 0,
@@ -68,6 +87,26 @@ export class FinalresultsComponent implements OnInit {
     "burst": 0,
   };
 
+  // mathArray: ISkillName[] = [
+  //   {skill_name: "wex"},
+  //   {skill_name: "critboost"},
+  //   {skill_name: "criteye"},
+  //   {skill_name: "atkboost"},
+  //   {skill_name: "agitator"},
+  //   {skill_name: "peakperf"},
+  //   {skill_name: "resentment"},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  //   {skill_name: ""},
+  // ];
+
   mathHZ: HZContainer = {
     "parts_name": "Antenna",
     "hit_slash": 75,
@@ -91,7 +130,7 @@ export class FinalresultsComponent implements OnInit {
 
   
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private finalresultsService: FinalResultsService) { }
 
   ngOnInit(): void {
     //router call from the previous page that stores our motion value information
@@ -129,6 +168,869 @@ export class FinalresultsComponent implements OnInit {
     this.mathHZ.element_thunder = Number(importedHZ.element_thunder);
     this.mathHZ.element_dragon = Number(importedHZ.element_dragon);
 
+    this.resetSavedMath();
+
+
+
+
+    
+
+
+    //this is where we'd call the service
+
+
+
+
+
+
+
+
+    
+
+
+    // this.flatraw = this.math.raw;
+    // this.critchance = this.math.critchance;
+
+    // //finding the correct sharpness modifier
+    // switch (this.math.sharpness){
+    //   case "red":{
+    //     this.rawsharpnessmod = 0.5;
+    //     this.elesharpnessmod = 0.25;
+    //     break;
+    //   }
+    //   case "orange":{
+    //     this.rawsharpnessmod = 0.75;
+    //     this.elesharpnessmod = 0.5;
+    //     break;
+    //   } 
+    //   case "yellow":{
+    //     this.rawsharpnessmod = 1;
+    //     this.elesharpnessmod = 0.75;
+    //     break;
+    //   } 
+    //   case "green":{
+    //     this.rawsharpnessmod = 1.05;
+    //     this.elesharpnessmod = 1;
+    //     break;
+    //   } 
+    //   case "blue":{
+    //     this.rawsharpnessmod = 1.2;
+    //     this.elesharpnessmod = 1.0625;
+    //     break;
+    //   } 
+    //   case "white":{
+    //     this.rawsharpnessmod = 1.32;
+    //     this.elesharpnessmod = 1.15;
+    //     break;
+    //   } 
+    //   case "purple":{
+    //     this.rawsharpnessmod = 1.39;
+    //     this.elesharpnessmod = 1.25;
+    //     break;
+    //   } 
+    // }
+
+
+
+    // //flat modifiers
+
+    // //AGITATOR AFFECTS BOTH RAW AND CRIT
+    // switch (this.math.agitator){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 4;
+    //     this.critchance += 3;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 8;
+    //     this.critchance += 5;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 12;
+    //     this.critchance += 7;
+    //    break; 
+    //   }
+    //   case 4: {
+    //     this.flatraw += 16;
+    //     this.critchance += 10;
+    //     break;
+    //   }
+    //   case 5: {
+    //     this.flatraw += 20;
+    //     this.critchance += 15;
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.peakperf){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 5;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 10;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 20;
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.resentment){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 5;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 10;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 15;
+    //     break;
+    //   }
+    //   case 4: {
+    //     this.flatraw += 20;
+    //     break;
+    //   }
+    //   case 5: {
+    //     this.flatraw += 25;
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.resuscitate){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 5;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 10;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 20;
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.counterstrike){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 10;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 15;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 25;
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.mailofhellfire){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 15;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 25;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 35;
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.dereliction){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 25;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 30;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 35;
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.burst){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 10;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 12;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 15;
+    //     break;
+    //   }
+    // }
+
+    // //it's fine to multiply now since flat boosts are done
+    // switch (this.math.atkboost){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw += 3;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw += 6;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw += 9;
+    //     break;
+    //   }
+    //   case 4: {
+    //     this.flatraw += 7;
+    //     this.flatraw *= 1.05;
+    //     break;
+    //   }
+    //   case 5: {
+    //     this.flatraw += 8;
+    //     this.flatraw *= 1.06;
+    //     break;
+    //   }
+    //   case 6: {
+    //     this.flatraw += 9;
+    //     this.flatraw *= 1.08;
+    //     break;
+    //   }
+    //   case 7: {
+    //     this.flatraw += 10;
+    //     this.flatraw *= 1.1;
+    //     break;
+    //   }
+      
+    // }
+
+    // //raw percentage modifers (done after attack boost)
+
+    // switch (this.math.offensiveguard){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatraw *= 1.05;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatraw *= 1.1;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatraw *= 1.15;
+    //     break;
+    //   }
+    // }
+
+    // //crit chance calculation
+
+    // //check if move is blunt AND target is blunt weakspot or sever AND sever weakspot then wex calculations are done
+    // switch ((this.mathMV.DamageType == "blunt" && this.mathHZ.hit_strike >= 45) || (this.mathMV.DamageType == "sever" && this.mathHZ.hit_slash >= 45) ){
+    //   case false: {
+    //     break;
+    //   }
+    //   case true: {
+    //     switch (this.math.wex){
+    //       case 0: {
+    //         break;
+    //       }
+    //       case 1: {
+    //         this.critchance += 15;
+    //         break;
+    //       }
+    //       case 2: {
+    //         this.critchance += 30;
+    //         break;
+    //       }
+    //       case 3: {
+    //         this.critchance += 50;
+    //         break;
+    //       }
+    //     }
+    //     break;
+    //   }
+    // }
+
+
+    // switch (this.math.critboost){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.rawcritmod += 0.05;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.rawcritmod += 0.1;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.rawcritmod += 0.15;
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.criteye){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.critchance += 5;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.critchance += 10;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.critchance += 15;
+    //     break;
+    //   }
+    //   case 4: {
+    //     this.critchance += 20;
+    //     break;
+    //   }
+    //   case 5: {
+    //     this.critchance += 25;
+    //     break;
+    //   }
+    //   case 6: {
+    //     this.critchance += 30;
+    //     break;
+    //   }
+    //   case 7: {
+    //     this.critchance += 40;
+    //     break;
+    //   }
+      
+    // }
+
+    // switch (this.math.maxmight){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.critchance += 10;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.critchance += 20;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.critchance += 30;
+    //     break;
+    //   }
+    // }
+
+    // //crit maxes out at 100% chance, so set to 100 if over that
+    // switch (this.critchance > 100) {
+    //   case false: {
+    //     break;
+    //   }
+    //   case true: {
+    //     this.critchance = 100;
+    //     break;
+    //   }
+    // }
+
+    // //elemental calculations
+    // this.flatele = this.math.ele;
+
+
+    // //burst goes first as it is a complete flat bonus
+
+    // if (this.mathMV.WeaponName == "DB"){
+    //   //db ele values
+    //   switch (this.math.burst){
+    //     case 0: {
+    //       break;
+    //     }
+    //     case 1: {
+    //       this.flatele += 6;
+    //       break;
+    //     }
+    //     case 2: {
+    //       this.flatele += 8;
+    //       break;
+    //     }
+    //     case 3: {
+    //       this.flatele += 12;
+    //       break;
+    //     }
+    //   }
+    // }
+    // else {
+    //   //other weapon ele values
+    //   switch (this.math.burst){
+    //     case 0: {
+    //       break;
+    //     }
+    //     case 1: {
+    //       this.flatele += 8;
+    //       break;
+    //     }
+    //     case 2: {
+    //       this.flatele += 10;
+    //       break;
+    //     }
+    //     case 3: {
+    //       this.flatele += 15;
+    //       break;
+    //     }
+    //   }
+    // }
+
+
+    // //element attack up must be applied before other percentages
+    // switch (this.math.eleatkup){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.flatele += 2;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.flatele += 3;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.flatele += 4;
+    //     this.flatele *= 1.05;
+    //     break;
+    //   }
+    //   case 4: {
+    //     this.flatele += 4;
+    //     this.flatele *= 1.1;
+    //     break;
+    //   }
+    //   case 5: {
+    //     this.flatele += 4;
+    //     this.flatele *= 1.2;
+    //     break;
+    //   }
+    // }
+
+    // //checks for element exploit, probably not the most efficient method but w/e
+    // switch (this.math.eleType){
+    //   case "fire":{
+    //     if (this.mathHZ.element_fire >= 20){
+    //       switch (this.math.eleexploit){
+    //         case 0: {
+    //           break;
+    //         }
+    //         case 1: {
+    //           this.flatele *= 1.1;
+    //           break;
+    //         }
+    //         case 2: {
+    //           this.flatele *= 1.125;
+    //           break;
+    //         }
+    //         case 3: {
+    //           this.flatele *= 1.15;
+    //           break;
+    //         }
+    //       }
+    //     }
+    //     break;
+    //   }
+    //   case "water":{
+    //     if (this.mathHZ.element_fire >= 20){
+    //       switch (this.math.eleexploit){
+    //         case 0: {
+    //           break;
+    //         }
+    //         case 1: {
+    //           this.flatele *= 1.1;
+    //           break;
+    //         }
+    //         case 2: {
+    //           this.flatele *= 1.125;
+    //           break;
+    //         }
+    //         case 3: {
+    //           this.flatele *= 1.15;
+    //           break;
+    //         }
+    //       }
+    //     }
+    //     break;
+    //   }
+    //   case "ice":{
+    //     if (this.mathHZ.element_fire >= 20){
+    //       switch (this.math.eleexploit){
+    //         case 0: {
+    //           break;
+    //         }
+    //         case 1: {
+    //           this.flatele *= 1.1;
+    //           break;
+    //         }
+    //         case 2: {
+    //           this.flatele *= 1.125;
+    //           break;
+    //         }
+    //         case 3: {
+    //           this.flatele *= 1.15;
+    //           break;
+    //         }
+    //       }
+    //     }
+    //     break;
+    //   }
+    //   case "thunder":{
+    //     if (this.mathHZ.element_fire >= 20){
+    //       switch (this.math.eleexploit){
+    //         case 0: {
+    //           break;
+    //         }
+    //         case 1: {
+    //           this.flatele *= 1.1;
+    //           break;
+    //         }
+    //         case 2: {
+    //           this.flatele *= 1.125;
+    //           break;
+    //         }
+    //         case 3: {
+    //           this.flatele *= 1.15;
+    //           break;
+    //         }
+    //       }
+    //     }
+    //     break;
+    //   }
+    //   case "dragon":{
+    //     if (this.mathHZ.element_fire >= 20){
+    //       switch (this.math.eleexploit){
+    //         case 0: {
+    //           break;
+    //         }
+    //         case 1: {
+    //           this.flatele *= 1.1;
+    //           break;
+    //         }
+    //         case 2: {
+    //           this.flatele *= 1.125;
+    //           break;
+    //         }
+    //         case 3: {
+    //           this.flatele *= 1.15;
+    //           break;
+    //         }
+    //       }
+    //     }
+    //     break;
+    //   }
+    // }
+
+    // switch (this.math.critele){
+    //   case 0: {
+    //     break;
+    //   }
+    //   case 1: {
+    //     this.elecritmod += 0.05;
+    //     break;
+    //   }
+    //   case 2: {
+    //     this.elecritmod += 0.1;
+    //     break;
+    //   }
+    //   case 3: {
+    //     this.elecritmod += 0.15;
+    //     break;
+    //   }
+    // }
+
+
+
+    // this.results.crit_chance = this.critchance;
+
+    // //damage before crits
+    // switch (this.mathMV.DamageType){
+    //   case "sever": {
+    //     //raw damage before crits
+    //     this.results.raw_no_crit = this.flatraw * (this.mathMV.RawMV/100) * this.rawsharpnessmod * (this.mathHZ.hit_slash/100);
+    //     //raw damage with guaranteed crit
+    //     this.results.raw_crit = this.results.raw_no_crit * (this.rawcritmod);
+    //     //raw damage normalized for critical chance
+    //     this.results.raw_avg = this.results.raw_no_crit + ((this.results.raw_crit - this.results.raw_no_crit) * (this.critchance/100));
+
+    //     //elemental damage before crits
+    //     switch (this.math.eleType){
+    //       case "fire":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_fire/100);
+    //         break;
+    //       }
+    //       case "water":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_water/100);
+    //         break;
+    //       }
+    //       case "ice":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_ice/100);
+    //         break;
+    //       }
+    //       case "thunder":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_thunder/100);
+    //         break;
+    //       }
+    //       case "dragon":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_dragon/100);
+    //         break;
+    //       }        
+    //     }
+
+    //     //elemental damage with guaranteed crit
+    //     this.results.ele_crit = this.results.ele_no_crit * (this.elecritmod);
+    //     //elemental damage normalized for critical chance
+    //     this.results.ele_avg = this.results.ele_no_crit + ((this.results.ele_crit - this.results.ele_no_crit) * (this.critchance/100));
+
+
+    //     break;
+    //   }    
+
+    //   case "blunt": {
+
+    //     //raw damage before crits
+    //     this.results.raw_no_crit = this.flatraw * (this.mathMV.RawMV/100) * this.rawsharpnessmod * (this.mathHZ.hit_strike/100);
+    //     //raw damage with guaranteed crit
+    //     this.results.raw_crit = this.results.raw_no_crit * (this.rawcritmod);
+    //     //raw damage normalized for critical chance
+    //     this.results.raw_avg = this.results.raw_no_crit + ((this.results.raw_crit - this.results.raw_no_crit) * (this.critchance/100));
+
+    //     //elemental damage before crits
+    //     switch (this.math.eleType){
+    //       case "fire":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_fire/100);
+    //         break;
+    //       }
+    //       case "water":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_water/100);
+    //         break;
+    //       }
+    //       case "ice":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_ice/100);
+    //         break;
+    //       }
+    //       case "thunder":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_thunder/100);
+    //         break;
+    //       }
+    //       case "dragon":{
+    //         this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_dragon/100);
+    //         break;
+    //       }        
+    //     }
+
+    //     //elemental damage with guaranteed crit
+    //     this.results.ele_crit = this.results.ele_no_crit * (this.elecritmod);
+    //     //elemental damage normalized for critical chance
+    //     this.results.ele_avg = this.results.ele_crit * (this.critchance/100);
+
+
+    //     break;
+    //   }
+
+    // }
+    // console.log(this.results);
+    // console.log(this.flatele);
+    // console.log(this.elecritmod);
+
+    // this.results.sum_no_crit = this.results.raw_no_crit + this.results.ele_no_crit;
+    // this.results.sum_crit = this.results.raw_crit + this.results.ele_crit;
+    // this.results.sum_avg = this.results.raw_avg + this.results.ele_avg;
+
+    this.results = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
+
+    // this.results.sum_no_crit = Math.round(this.results.sum_no_crit);
+    // this.results.raw_no_crit = Math.round(this.results.raw_no_crit);
+    // this.results.ele_no_crit = Math.round(this.results.ele_no_crit);
+    // this.results.sum_crit = Math.round(this.results.sum_crit);
+    // this.results.raw_crit = Math.round(this.results.raw_crit);
+    // this.results.ele_crit = Math.round(this.results.ele_crit);
+    // this.results.sum_avg = Math.round(this.results.sum_avg);
+    // this.results.raw_avg = Math.round(this.results.raw_avg);
+    // this.results.ele_avg = Math.round(this.results.ele_avg);
+
+
+    
+
+
+  }
+
+
+  //  extra feature: sets a selected skill level to 0 and reruns calculations.
+  //  this is meant to give the user an idea of how valuable each skillpoint is.
+  public zeroComparison(event: any, skillSelect: number){
+    // console.log("function called");
+    // console.log(event.target.value);
+
+    //  run the method to reset the math object to saved user settings before messing with it.
+    this.resetSavedMath();
+
+    //  declare variable to save the level of the skill you're going to zero.
+    let storedLevel = 0;
+
+
+    switch (Number(event.target.value)){
+
+      // each switch statement will first store the level of the selected skill.
+      // the selected skill is then set to ZERO.
+      // all calculations are rerun with this new value and stored in results2.
+
+      case 1:
+        storedLevel = this.math.wex;
+        this.math.wex = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 2:
+        storedLevel = this.math.critboost;
+        this.math.critboost = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 3:
+        storedLevel = this.math.criteye;
+        this.math.criteye = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 4:
+        storedLevel = this.math.atkboost;
+        this.math.atkboost = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 5:
+        storedLevel = this.math.agitator;
+        this.math.agitator = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 6:
+        storedLevel = this.math.peakperf;
+        this.math.peakperf = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 7:
+        storedLevel = this.math.resentment;
+        this.math.resentment = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 8:
+        storedLevel = this.math.resuscitate;
+        this.math.resuscitate = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 9:
+        storedLevel = this.math.maxmight;
+        this.math.maxmight = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 10:
+        storedLevel = this.math.critele;
+        this.math.critele = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 11:
+        storedLevel = this.math.offensiveguard;
+        this.math.offensiveguard = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 12:
+        storedLevel = this.math.eleatkup;
+        this.math.eleatkup = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 13:
+        storedLevel = this.math.counterstrike;
+        this.math.counterstrike = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 14:
+        storedLevel = this.math.eleexploit;
+        this.math.eleexploit = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 15:
+        storedLevel = this.math.mailofhellfire;
+        this.math.mailofhellfire = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 16:
+        storedLevel = this.math.dereliction;
+        this.math.dereliction = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+      case 17:
+        storedLevel = this.math.burst;
+        this.math.burst = 0;
+        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        break;
+    }
+    console.log(this.results2);
+    const raw_no_crit_diff = this.results.raw_no_crit - this.results2.raw_no_crit;
+    const ele_no_crit_diff = this.results.ele_no_crit - this.results2.ele_no_crit;
+    const sum_no_crit_diff = this.results.sum_no_crit - this.results2.sum_no_crit;
+
+    const raw_crit_diff = this.results.raw_crit - this.results2.raw_crit;
+    const ele_crit_diff = this.results.ele_crit - this.results2.ele_crit;
+    const sum_crit_diff = this.results.sum_crit - this.results2.sum_crit;
+
+    const raw_avg_diff = this.results.raw_avg - this.results2.raw_avg;
+    const ele_avg_diff = this.results.ele_avg - this.results2.ele_avg;
+    const sum_avg_diff = this.results.sum_avg - this.results2.sum_avg;
+
+    const diff_per_point = sum_avg_diff/storedLevel;
+
+    const percentage_diff = (sum_avg_diff/this.results.sum_avg) * 100;
+
+    const percentage_diff_per_point = (percentage_diff/storedLevel) * 100;
+
+    console.log("This skill was contributing an average of " + sum_avg_diff +
+     " damage to your total of " + this.results.sum_avg + ", making up " + percentage_diff +
+     "% of your total damage. The skill overall was worth " + diff_per_point + " damage per point, or " +
+     percentage_diff_per_point + "% damage per level.");
+
+  }
+
+  resetSavedMath(){
     let importedUser = JSON.parse(localStorage.getItem("savedSettings")!);
     this.math.raw = Number(importedUser.raw);
     this.math.sharpness = importedUser.sharpness.toLocaleLowerCase();
@@ -153,724 +1055,6 @@ export class FinalresultsComponent implements OnInit {
     this.math.dereliction = Number(importedUser.dereliction);
     this.math.burst = Number(importedUser.burst);
     console.log(this.math);
-
-
-
-    
-
-
-
-
-    this.flatraw = this.math.raw;
-    this.critchance = this.math.critchance;
-
-    //finding the correct sharpness modifier
-    switch (this.math.sharpness){
-      case "red":{
-        this.rawsharpnessmod = 0.5;
-        this.elesharpnessmod = 0.25;
-        break;
-      }
-      case "orange":{
-        this.rawsharpnessmod = 0.75;
-        this.elesharpnessmod = 0.5;
-        break;
-      } 
-      case "yellow":{
-        this.rawsharpnessmod = 1;
-        this.elesharpnessmod = 0.75;
-        break;
-      } 
-      case "green":{
-        this.rawsharpnessmod = 1.05;
-        this.elesharpnessmod = 1;
-        break;
-      } 
-      case "blue":{
-        this.rawsharpnessmod = 1.2;
-        this.elesharpnessmod = 1.0625;
-        break;
-      } 
-      case "white":{
-        this.rawsharpnessmod = 1.32;
-        this.elesharpnessmod = 1.15;
-        break;
-      } 
-      case "purple":{
-        this.rawsharpnessmod = 1.39;
-        this.elesharpnessmod = 1.25;
-        break;
-      } 
-    }
-
-
-
-    //flat modifiers
-
-    //AGITATOR AFFECTS BOTH RAW AND CRIT
-    switch (this.math.agitator){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 4;
-        this.critchance += 3;
-        break;
-      }
-      case 2: {
-        this.flatraw += 8;
-        this.critchance += 5;
-        break;
-      }
-      case 3: {
-        this.flatraw += 12;
-        this.critchance += 7;
-       break; 
-      }
-      case 4: {
-        this.flatraw += 16;
-        this.critchance += 10;
-        break;
-      }
-      case 5: {
-        this.flatraw += 20;
-        this.critchance += 15;
-        break;
-      }
-    }
-
-    switch (this.math.peakperf){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 5;
-        break;
-      }
-      case 2: {
-        this.flatraw += 10;
-        break;
-      }
-      case 3: {
-        this.flatraw += 20;
-        break;
-      }
-    }
-
-    switch (this.math.resentment){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 5;
-        break;
-      }
-      case 2: {
-        this.flatraw += 10;
-        break;
-      }
-      case 3: {
-        this.flatraw += 15;
-        break;
-      }
-      case 4: {
-        this.flatraw += 20;
-        break;
-      }
-      case 5: {
-        this.flatraw += 25;
-        break;
-      }
-    }
-
-    switch (this.math.resuscitate){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 5;
-        break;
-      }
-      case 2: {
-        this.flatraw += 10;
-        break;
-      }
-      case 3: {
-        this.flatraw += 20;
-        break;
-      }
-    }
-
-    switch (this.math.counterstrike){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 10;
-        break;
-      }
-      case 2: {
-        this.flatraw += 15;
-        break;
-      }
-      case 3: {
-        this.flatraw += 25;
-        break;
-      }
-    }
-
-    switch (this.math.mailofhellfire){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 15;
-        break;
-      }
-      case 2: {
-        this.flatraw += 25;
-        break;
-      }
-      case 3: {
-        this.flatraw += 35;
-        break;
-      }
-    }
-
-    switch (this.math.dereliction){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 25;
-        break;
-      }
-      case 2: {
-        this.flatraw += 30;
-        break;
-      }
-      case 3: {
-        this.flatraw += 35;
-        break;
-      }
-    }
-
-    switch (this.math.burst){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 10;
-        break;
-      }
-      case 2: {
-        this.flatraw += 12;
-        break;
-      }
-      case 3: {
-        this.flatraw += 15;
-        break;
-      }
-    }
-
-    //it's fine to multiply now since flat boosts are done
-    switch (this.math.atkboost){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw += 3;
-        break;
-      }
-      case 2: {
-        this.flatraw += 6;
-        break;
-      }
-      case 3: {
-        this.flatraw += 9;
-        break;
-      }
-      case 4: {
-        this.flatraw += 7;
-        this.flatraw *= 1.05;
-        break;
-      }
-      case 5: {
-        this.flatraw += 8;
-        this.flatraw *= 1.06;
-        break;
-      }
-      case 6: {
-        this.flatraw += 9;
-        this.flatraw *= 1.08;
-        break;
-      }
-      case 7: {
-        this.flatraw += 10;
-        this.flatraw *= 1.1;
-        break;
-      }
-      
-    }
-
-    //raw percentage modifers (done after attack boost)
-
-    switch (this.math.offensiveguard){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatraw *= 1.05;
-        break;
-      }
-      case 2: {
-        this.flatraw *= 1.1;
-        break;
-      }
-      case 3: {
-        this.flatraw *= 1.15;
-        break;
-      }
-    }
-
-    //crit chance calculation
-
-    //check if move is blunt AND target is blunt weakspot or sever AND sever weakspot then wex calculations are done
-    switch ((this.mathMV.DamageType == "blunt" && this.mathHZ.hit_strike >= 45) || (this.mathMV.DamageType == "sever" && this.mathHZ.hit_slash >= 45) ){
-      case false: {
-        break;
-      }
-      case true: {
-        switch (this.math.wex){
-          case 0: {
-            break;
-          }
-          case 1: {
-            this.critchance += 15;
-            break;
-          }
-          case 2: {
-            this.critchance += 30;
-            break;
-          }
-          case 3: {
-            this.critchance += 50;
-            break;
-          }
-        }
-        break;
-      }
-    }
-
-
-    switch (this.math.critboost){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.rawcritmod += 0.05;
-        break;
-      }
-      case 2: {
-        this.rawcritmod += 0.1;
-        break;
-      }
-      case 3: {
-        this.rawcritmod += 0.15;
-        break;
-      }
-    }
-
-    switch (this.math.criteye){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.critchance += 5;
-        break;
-      }
-      case 2: {
-        this.critchance += 10;
-        break;
-      }
-      case 3: {
-        this.critchance += 15;
-        break;
-      }
-      case 4: {
-        this.critchance += 20;
-        break;
-      }
-      case 5: {
-        this.critchance += 25;
-        break;
-      }
-      case 6: {
-        this.critchance += 30;
-        break;
-      }
-      case 7: {
-        this.critchance += 40;
-        break;
-      }
-      
-    }
-
-    switch (this.math.maxmight){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.critchance += 10;
-        break;
-      }
-      case 2: {
-        this.critchance += 20;
-        break;
-      }
-      case 3: {
-        this.critchance += 30;
-        break;
-      }
-    }
-
-    //crit maxes out at 100% chance, so set to 100 if over that
-    switch (this.critchance > 100) {
-      case false: {
-        break;
-      }
-      case true: {
-        this.critchance = 100;
-        break;
-      }
-    }
-
-    //elemental calculations
-    this.flatele = this.math.ele;
-
-
-    //burst goes first as it is a complete flat bonus
-
-    if (this.mathMV.WeaponName == "DB"){
-      //db ele values
-      switch (this.math.burst){
-        case 0: {
-          break;
-        }
-        case 1: {
-          this.flatele += 6;
-          break;
-        }
-        case 2: {
-          this.flatele += 8;
-          break;
-        }
-        case 3: {
-          this.flatele += 12;
-          break;
-        }
-      }
-    }
-    else {
-      //other weapon ele values
-      switch (this.math.burst){
-        case 0: {
-          break;
-        }
-        case 1: {
-          this.flatele += 8;
-          break;
-        }
-        case 2: {
-          this.flatele += 10;
-          break;
-        }
-        case 3: {
-          this.flatele += 15;
-          break;
-        }
-      }
-    }
-
-
-    //element attack up must be applied before other percentages
-    switch (this.math.eleatkup){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.flatele += 2;
-        break;
-      }
-      case 2: {
-        this.flatele += 3;
-        break;
-      }
-      case 3: {
-        this.flatele += 4;
-        this.flatele *= 1.05;
-        break;
-      }
-      case 4: {
-        this.flatele += 4;
-        this.flatele *= 1.1;
-        break;
-      }
-      case 5: {
-        this.flatele += 4;
-        this.flatele *= 1.2;
-        break;
-      }
-    }
-
-    //checks for element exploit, probably not the most efficient method but w/e
-    switch (this.math.eleType){
-      case "fire":{
-        if (this.mathHZ.element_fire >= 20){
-          switch (this.math.eleexploit){
-            case 0: {
-              break;
-            }
-            case 1: {
-              this.flatele *= 1.1;
-              break;
-            }
-            case 2: {
-              this.flatele *= 1.125;
-              break;
-            }
-            case 3: {
-              this.flatele *= 1.15;
-              break;
-            }
-          }
-        }
-        break;
-      }
-      case "water":{
-        if (this.mathHZ.element_fire >= 20){
-          switch (this.math.eleexploit){
-            case 0: {
-              break;
-            }
-            case 1: {
-              this.flatele *= 1.1;
-              break;
-            }
-            case 2: {
-              this.flatele *= 1.125;
-              break;
-            }
-            case 3: {
-              this.flatele *= 1.15;
-              break;
-            }
-          }
-        }
-        break;
-      }
-      case "ice":{
-        if (this.mathHZ.element_fire >= 20){
-          switch (this.math.eleexploit){
-            case 0: {
-              break;
-            }
-            case 1: {
-              this.flatele *= 1.1;
-              break;
-            }
-            case 2: {
-              this.flatele *= 1.125;
-              break;
-            }
-            case 3: {
-              this.flatele *= 1.15;
-              break;
-            }
-          }
-        }
-        break;
-      }
-      case "thunder":{
-        if (this.mathHZ.element_fire >= 20){
-          switch (this.math.eleexploit){
-            case 0: {
-              break;
-            }
-            case 1: {
-              this.flatele *= 1.1;
-              break;
-            }
-            case 2: {
-              this.flatele *= 1.125;
-              break;
-            }
-            case 3: {
-              this.flatele *= 1.15;
-              break;
-            }
-          }
-        }
-        break;
-      }
-      case "dragon":{
-        if (this.mathHZ.element_fire >= 20){
-          switch (this.math.eleexploit){
-            case 0: {
-              break;
-            }
-            case 1: {
-              this.flatele *= 1.1;
-              break;
-            }
-            case 2: {
-              this.flatele *= 1.125;
-              break;
-            }
-            case 3: {
-              this.flatele *= 1.15;
-              break;
-            }
-          }
-        }
-        break;
-      }
-    }
-
-    switch (this.math.critele){
-      case 0: {
-        break;
-      }
-      case 1: {
-        this.elecritmod += 0.05;
-        break;
-      }
-      case 2: {
-        this.elecritmod += 0.1;
-        break;
-      }
-      case 3: {
-        this.elecritmod += 0.15;
-        break;
-      }
-    }
-
-
-
-    this.results.crit_chance = this.critchance;
-
-    //damage before crits
-    switch (this.mathMV.DamageType){
-      case "sever": {
-        //raw damage before crits
-        this.results.raw_no_crit = this.flatraw * (this.mathMV.RawMV/100) * this.rawsharpnessmod * (this.mathHZ.hit_slash/100);
-        //raw damage with guaranteed crit
-        this.results.raw_crit = this.results.raw_no_crit * (this.rawcritmod);
-        //raw damage normalized for critical chance
-        this.results.raw_avg = this.results.raw_no_crit + ((this.results.raw_crit - this.results.raw_no_crit) * (this.critchance/100));
-
-        //elemental damage before crits
-        switch (this.math.eleType){
-          case "fire":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_fire/100);
-            break;
-          }
-          case "water":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_water/100);
-            break;
-          }
-          case "ice":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_ice/100);
-            break;
-          }
-          case "thunder":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_thunder/100);
-            break;
-          }
-          case "dragon":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_dragon/100);
-            break;
-          }        
-        }
-
-        //elemental damage with guaranteed crit
-        this.results.ele_crit = this.results.ele_no_crit * (this.elecritmod);
-        //elemental damage normalized for critical chance
-        this.results.ele_avg = this.results.ele_no_crit + ((this.results.ele_crit - this.results.ele_no_crit) * (this.critchance/100));
-
-
-        break;
-      }    
-
-      case "blunt": {
-
-        //raw damage before crits
-        this.results.raw_no_crit = this.flatraw * (this.mathMV.RawMV/100) * this.rawsharpnessmod * (this.mathHZ.hit_strike/100);
-        //raw damage with guaranteed crit
-        this.results.raw_crit = this.results.raw_no_crit * (this.rawcritmod);
-        //raw damage normalized for critical chance
-        this.results.raw_avg = this.results.raw_no_crit + ((this.results.raw_crit - this.results.raw_no_crit) * (this.critchance/100));
-
-        //elemental damage before crits
-        switch (this.math.eleType){
-          case "fire":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_fire/100);
-            break;
-          }
-          case "water":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_water/100);
-            break;
-          }
-          case "ice":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_ice/100);
-            break;
-          }
-          case "thunder":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_thunder/100);
-            break;
-          }
-          case "dragon":{
-            this.results.ele_no_crit = this.flatele * (this.mathMV.EleMV) * this.elesharpnessmod * (this.mathHZ.element_dragon/100);
-            break;
-          }        
-        }
-
-        //elemental damage with guaranteed crit
-        this.results.ele_crit = this.results.ele_no_crit * (this.elecritmod);
-        //elemental damage normalized for critical chance
-        this.results.ele_avg = this.results.ele_crit * (this.critchance/100);
-
-
-        break;
-      }
-
-    }
-    console.log(this.results);
-    console.log(this.flatele);
-    console.log(this.elecritmod);
-
-    this.results.sum_no_crit = this.results.raw_no_crit + this.results.ele_no_crit;
-    this.results.sum_crit = this.results.raw_crit + this.results.ele_crit;
-    this.results.sum_avg = this.results.raw_avg + this.results.ele_avg;
-
-    this.results.sum_no_crit = Math.round(this.results.sum_no_crit);
-    this.results.raw_no_crit = Math.round(this.results.raw_no_crit);
-    this.results.ele_no_crit = Math.round(this.results.ele_no_crit);
-    this.results.sum_crit = Math.round(this.results.sum_crit);
-    this.results.raw_crit = Math.round(this.results.raw_crit);
-    this.results.ele_crit = Math.round(this.results.ele_crit);
-    this.results.sum_avg = Math.round(this.results.sum_avg);
-    this.results.raw_avg = Math.round(this.results.raw_avg);
-    this.results.ele_avg = Math.round(this.results.ele_avg);
-
-
-    
-
-
-  }
-
-  updateText(){
-
   }
 
 }

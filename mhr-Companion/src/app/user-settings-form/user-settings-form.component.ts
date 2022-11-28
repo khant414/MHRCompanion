@@ -203,9 +203,10 @@ import { Subscription } from 'rxjs';
       var x = sessionStorage.getItem('ID:');
       if (x != null){
       this.display = true;
-    }
+      }
+    } 
   }
-  }
+
   private handleError(err: HttpErrorResponse){
     let errorMessage = '';
     if (err.error instanceof ErrorEvent){
@@ -215,11 +216,11 @@ import { Subscription } from 'rxjs';
     }
     console.error(errorMessage);
     return throwError(()=>errorMessage);
-}
+  }
 
-ngOnDestroy() {
-  this.sub?.unsubscribe();
-}
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
   
 
 }

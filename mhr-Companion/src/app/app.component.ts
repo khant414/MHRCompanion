@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
   styleUrls: ['./app.component.css','../styles.css']
 })
 export class AppComponent {
-  title = 'Monster Hunter Rising Companion';
+  title = 'Monster Hunter Rise Companion App';
   welcomeMessage = sessionStorage.getItem('Name:');
 }
 
