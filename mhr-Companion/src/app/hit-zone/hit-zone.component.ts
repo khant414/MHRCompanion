@@ -22,8 +22,7 @@ export class HitZoneComponent implements OnInit, OnDestroy {
 
   hitzones: IHitzone[] = [];
   sub: Subscription | undefined;
-
-
+  
   //test Data - will be replaced with API call during onInit
 // hitzones2: IHitzone[] = [
 //   {
@@ -121,13 +120,28 @@ export class HitZoneComponent implements OnInit, OnDestroy {
   constructor( private hitzoneService: HitzoneService) {  }
 
   ngOnInit(): void {
+
+
+    const monsterName = sessionStorage.getItem("targetMonster");
     
-    this.hitzones = this.hitzoneService.getHitzones();
+    //this.hitzones = this.hitzoneService.getHitzones();
     //call the HitzoneService to fill "hitzones" array with data
     // this.sub = this.hitzoneService.getGoreHitzones().subscribe({
     //   next: hitzones => this.hitzones = hitzones,
     //   error: err => this.errorMessage = err
     // });
+
+
+    this.sub = this.hitzoneService.getHitzones(monsterName!).subscribe({
+      next: hitzones =>{
+        this.hitzones = hitzones,
+        this.filteredHitzones = hitzones;
+      },
+      error: err => this.errorMessage = err
+    });
+
+    
+
 
 
     //this.hitzones = this.hitzoneService.getHitzones();

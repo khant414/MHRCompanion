@@ -7,6 +7,56 @@
         <p>With an overall chance of {{results.crit_chance}}% to crit, this works out to an average of {{results.raw_avg}} raw damage and {{results.ele_avg}} {{math.eleType}} damage for a total of {{results.sum_avg}} damage.</p>
       </div>
 
+      <!-- <div class="form-group">
+        <label for="weaponname"> Weapon: </label>
+        <select
+          class="form-control w-25"
+          id="weaponname"
+          name="weaponname"
+          formcontrolName="weaponname"
+          [(ngModel)]="skillSelect">
+          <option *ngFor="let item of mathArray" 
+          [value]="mathArray"
+          >
+          {{weaponname.WeaponName}}                       
+          </option>
+        </select>
+      </div> -->
+
+      <div class="form-group">
+        <label for="sharpness" class="form-label"> Select a skill to investigate: </label>
+        <select
+          class="form-control w-25"
+          id="skill"
+          name="skill"
+          formcontrolName="skill"
+          [(ngModel)]="skillSelect"
+          (click)="zeroComparison($event, skillSelect)">
+          <option [value] = 1>Weakness Exploit</option>
+          <option [value] = 2>Critical Boost</option>
+          <option [value] = 3>Critical Eye</option>
+          <option [value] = 4>Attack Boost</option>
+          <option [value] = 5>Agitator</option>
+          <option [value] = 6>Peak Performance</option>
+          <option [value] = 7>Resentment</option>
+          <option [value] = 8>Resuscitate</option>
+          <option [value] = 9>Maximum Might</option>
+          <option [value] = 10>Critical Element</option>
+          <option [value] = 11>Offensive Guard</option>
+          <option [value] = 12>Element Attack Up</option>
+          <option [value] = 13>Counterstrike</option>
+          <option [value] = 14>Elemental Exploit</option>
+          <option [value] = 15>Mail of Hellfire</option>
+          <option [value] = 16>Dereliction</option>
+          <option [value] = 17>Burst</option>
+        </select>
+      </div>
+      <div id="comparison" *ngIf="edited">This skill was contributes an average of {{sum_avg_diff}}
+         damage to your total of {{results.sum_avg}}, making up {{percentage_diff}}% of your total damage.
+         The skill overall is worth {{diff_per_point}} damage per point, or {{percentage_diff_per_point}}% damage per point.</div>
+         <div id="alert" *ngIf="edited2">You don't even have this armor skill!</div>
+
+
     </div>
 </div>
 

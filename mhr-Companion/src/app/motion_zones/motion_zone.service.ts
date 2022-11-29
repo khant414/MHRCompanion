@@ -8,7 +8,7 @@ export class MotionZoneService {
 
 
     private motionzoneURL = 'http://localhost:5000/mvsearch/1';
-    private motionzoneUrl1 = 'http://localhost:5000/mvsearch2/LA';
+    private motionzoneUrl1 = 'http://localhost:5000/mvsearch2/';
     constructor(private http:HttpClient) { }
 
     getOneMove(): Observable<IMotionzone[]>{
@@ -18,8 +18,8 @@ export class MotionZoneService {
         );
     }
 
-    getLanceMoves(): Observable<IMotionzone[]>{
-        return this.http.get<IMotionzone[]>(this.motionzoneUrl1).pipe(
+    getMoves(weapon: string): Observable<IMotionzone[]>{
+        return this.http.get<IMotionzone[]>(this.motionzoneUrl1 + `${weapon}`).pipe(
             tap(data => console.log('All: ', JSON.stringify(data))),
             catchError(this.handleError)
         );

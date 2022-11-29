@@ -67,6 +67,9 @@ export class Motion_ZoneComponent implements OnInit {
     // ];
     
     ngOnInit(): void {
+        //grab weapon name from storage
+        const weaponName = sessionStorage.getItem("targetWeapon");
+
         //router call from the previous page that stores our hitzone information
         const parts_name = this.route.snapshot.paramMap.get('parts_name');
         const hit_slash = this.route.snapshot.paramMap.get('hit_slash');
@@ -96,11 +99,13 @@ export class Motion_ZoneComponent implements OnInit {
             this.currentHZ.element_ice = Number(element_ice);
             this.currentHZ.element_thunder = Number(element_thunder);
             this.currentHZ.element_dragon = Number(element_dragon);
-        }   
+        }
+        
+        localStorage.setItem("hitzones", JSON.stringify(this.currentHZ));
         
 
 
-        this.sub = this.motionzoneservice.getLanceMoves().subscribe({
+        this.sub = this.motionzoneservice.getMoves(weaponName!).subscribe({
             next: motionzones => {
                 this.motionzones = motionzones;
                 this.filteredMotionzones = motionzones;
