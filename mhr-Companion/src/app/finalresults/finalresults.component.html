@@ -24,7 +24,7 @@
       </div> -->
 
       <div class="form-group">
-        <label for="sharpness" class="form-label"> Select a skill to zero: </label>
+        <label for="sharpness" class="form-label"> Select a skill to investigate: </label>
         <select
           class="form-control w-25"
           id="skill"
@@ -51,6 +51,10 @@
           <option [value] = 17>Burst</option>
         </select>
       </div>
+      <div id="comparison" *ngIf="edited">This skill was contributes an average of {{sum_avg_diff}}
+         damage to your total of {{results.sum_avg}}, making up {{percentage_diff}}% of your total damage.
+         The skill overall is worth {{diff_per_point}} damage per point, or {{percentage_diff_per_point}}% damage per point.</div>
+         <div id="alert" *ngIf="edited2">You don't even have this armor skill!</div>
 
 
     </div>

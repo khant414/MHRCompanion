@@ -10,6 +10,8 @@ import { FinalResultsService } from './finalresults.service';
 })
 export class FinalresultsComponent implements OnInit {
 
+  public edited = false;
+  public edited2 = false;
   skillSelect: number = 0;
 
   pageTitle: string = 'Final Results';
@@ -29,6 +31,23 @@ export class FinalresultsComponent implements OnInit {
   elecritmod: number = 1;
 
   eletotalnocrit: number = 0;
+
+
+  raw_no_crit_diff: number = 0;
+  ele_no_crit_diff: number = 0;
+  sum_no_crit_diff: number = 0;
+
+  raw_crit_diff: number = 0;
+  ele_crit_diff: number = 0;
+  sum_crit_diff: number = 0;
+
+  raw_avg_diff: number = 0;
+  ele_avg_diff: number = 0;
+  sum_avg_diff: number = 0;
+
+  diff_per_point: number = 0;
+  percentage_diff: number = 0;
+  percentage_diff_per_point: number = 0;
 
   results: IResults = {
     "crit_chance": 0,
@@ -86,26 +105,6 @@ export class FinalresultsComponent implements OnInit {
     "dereliction": 0,
     "burst": 0,
   };
-
-  // mathArray: ISkillName[] = [
-  //   {skill_name: "wex"},
-  //   {skill_name: "critboost"},
-  //   {skill_name: "criteye"},
-  //   {skill_name: "atkboost"},
-  //   {skill_name: "agitator"},
-  //   {skill_name: "peakperf"},
-  //   {skill_name: "resentment"},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  //   {skill_name: ""},
-  // ];
 
   mathHZ: HZContainer = {
     "parts_name": "Antenna",
@@ -908,6 +907,8 @@ export class FinalresultsComponent implements OnInit {
     //  run the method to reset the math object to saved user settings before messing with it.
     this.resetSavedMath();
 
+    this.resetDiffs();
+
     //  declare variable to save the level of the skill you're going to zero.
     let storedLevel = 0;
 
@@ -920,113 +921,210 @@ export class FinalresultsComponent implements OnInit {
 
       case 1:
         storedLevel = this.math.wex;
-        this.math.wex = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.wex = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
         break;
       case 2:
         storedLevel = this.math.critboost;
-        this.math.critboost = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.critboost = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
         break;
       case 3:
         storedLevel = this.math.criteye;
-        this.math.criteye = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.criteye = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }        
         break;
       case 4:
         storedLevel = this.math.atkboost;
-        this.math.atkboost = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.atkboost = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }           
         break;
       case 5:
         storedLevel = this.math.agitator;
-        this.math.agitator = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.agitator = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }        
         break;
       case 6:
         storedLevel = this.math.peakperf;
-        this.math.peakperf = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.peakperf = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+        
         break;
       case 7:
         storedLevel = this.math.resentment;
-        this.math.resentment = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.resentment = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }        
         break;
       case 8:
         storedLevel = this.math.resuscitate;
-        this.math.resuscitate = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.resuscitate = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }  
+       
         break;
       case 9:
         storedLevel = this.math.maxmight;
-        this.math.maxmight = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.maxmight = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }  
+        
         break;
       case 10:
         storedLevel = this.math.critele;
-        this.math.critele = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.critele = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        } 
+       
         break;
       case 11:
         storedLevel = this.math.offensiveguard;
-        this.math.offensiveguard = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.offensiveguard = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        } 
+
         break;
       case 12:
         storedLevel = this.math.eleatkup;
-        this.math.eleatkup = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.eleatkup = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+
         break;
       case 13:
         storedLevel = this.math.counterstrike;
-        this.math.counterstrike = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.counterstrike = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+
         break;
       case 14:
         storedLevel = this.math.eleexploit;
-        this.math.eleexploit = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.eleexploit = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+
         break;
       case 15:
         storedLevel = this.math.mailofhellfire;
-        this.math.mailofhellfire = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.mailofhellfire = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+
         break;
       case 16:
         storedLevel = this.math.dereliction;
-        this.math.dereliction = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.dereliction = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+
         break;
       case 17:
         storedLevel = this.math.burst;
-        this.math.burst = 0;
-        this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+        if (storedLevel > 0){
+          this.math.burst = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+
         break;
     }
     console.log(this.results2);
-    const raw_no_crit_diff = this.results.raw_no_crit - this.results2.raw_no_crit;
-    const ele_no_crit_diff = this.results.ele_no_crit - this.results2.ele_no_crit;
-    const sum_no_crit_diff = this.results.sum_no_crit - this.results2.sum_no_crit;
+    this.raw_no_crit_diff = this.results.raw_no_crit - this.results2.raw_no_crit;
+    this.ele_no_crit_diff = this.results.ele_no_crit - this.results2.ele_no_crit;
+    this.sum_no_crit_diff = this.results.sum_no_crit - this.results2.sum_no_crit;
 
-    const raw_crit_diff = this.results.raw_crit - this.results2.raw_crit;
-    const ele_crit_diff = this.results.ele_crit - this.results2.ele_crit;
-    const sum_crit_diff = this.results.sum_crit - this.results2.sum_crit;
+    this.raw_crit_diff = this.results.raw_crit - this.results2.raw_crit;
+    this.ele_crit_diff = this.results.ele_crit - this.results2.ele_crit;
+    this.sum_crit_diff = this.results.sum_crit - this.results2.sum_crit;
 
-    const raw_avg_diff = this.results.raw_avg - this.results2.raw_avg;
-    const ele_avg_diff = this.results.ele_avg - this.results2.ele_avg;
-    const sum_avg_diff = this.results.sum_avg - this.results2.sum_avg;
+    this.raw_avg_diff = this.results.raw_avg - this.results2.raw_avg;
+    this.ele_avg_diff = this.results.ele_avg - this.results2.ele_avg;
+    this.sum_avg_diff = this.results.sum_avg - this.results2.sum_avg;
 
-    const diff_per_point = sum_avg_diff/storedLevel;
+    this.diff_per_point = this.sum_avg_diff/storedLevel;
 
-    const percentage_diff = (sum_avg_diff/this.results.sum_avg) * 100;
+    this.percentage_diff = (this.sum_avg_diff/this.results.sum_avg) * 100;
 
-    const percentage_diff_per_point = (percentage_diff/storedLevel) * 100;
+    this.percentage_diff_per_point = (this.percentage_diff/storedLevel);
 
-    console.log("This skill was contributing an average of " + sum_avg_diff +
-     " damage to your total of " + this.results.sum_avg + ", making up " + percentage_diff +
-     "% of your total damage. The skill overall was worth " + diff_per_point + " damage per point, or " +
-     percentage_diff_per_point + "% damage per level.");
+    // this.edited = true;
+    console.log("This skill was contributing an average of " + this.sum_avg_diff +
+     " damage to your total of " + this.results.sum_avg + ", making up " + this.percentage_diff +
+     "% of your total damage. The skill overall was worth " + this.diff_per_point + " damage per point, or " +
+     this.percentage_diff_per_point + "% damage per level.");
 
   }
 
@@ -1055,6 +1153,29 @@ export class FinalresultsComponent implements OnInit {
     this.math.dereliction = Number(importedUser.dereliction);
     this.math.burst = Number(importedUser.burst);
     console.log(this.math);
+  }
+
+  //sets all differences to 0 to prep for another skill comparison.
+  //also blanks out the percentage difference text on screen.
+  resetDiffs(){
+    this.raw_no_crit_diff = 0;
+    this.ele_no_crit_diff = 0;
+    this.sum_no_crit_diff = 0;
+  
+    this.raw_crit_diff = 0;
+    this.ele_crit_diff = 0;
+    this.sum_crit_diff = 0;
+  
+    this.raw_avg_diff = 0;
+    this.ele_avg_diff = 0;
+    this.sum_avg_diff = 0;
+  
+    this.diff_per_point = 0;
+    this.percentage_diff = 0;
+    this.percentage_diff_per_point = 0;
+
+    this.edited = false;
+    this.edited2 = false;
   }
 
 }
