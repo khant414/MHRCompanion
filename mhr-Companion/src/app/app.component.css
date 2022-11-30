@@ -2,3 +2,11 @@ thead {
     color: #dddee0;
     background-color: #323a45;
 }
+
+.nav-link:hover{
+    background-color: lightgray !important;
+}
+
+.Active{
+    background-color: lightblue !important;
+}
