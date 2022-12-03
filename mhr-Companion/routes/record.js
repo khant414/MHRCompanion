@@ -295,6 +295,59 @@ recordRoutes
     console.log(`updated ${req.body.googleid} character stats`);
   });
 
+recordRoutes.route("/postHitzone").post(async function (req, res){
+  const dbConnect = dbo.getDb();
+  const newHitzone = {
+    MonsterID: req.body.MonsterID,
+    MonsterName: req.body.MonsterName,
+    parts_name: req.body.parts_name,
+    hit_slash: req.body.hit_slash,
+    hit_strike: req.body.hit_strike,
+    hit_shot: req.body.hit_shot,
+    element_fire: req.body.element_fire,
+    element_water: req.body.element_water,
+    element_ice: req.body.element_ice,
+    element_thunder: req.body.element_thunder,
+    element_dragon: req.body.element_dragon
+  }
+
+  dbConnect
+  .collection("HitzoneNewCollection")
+  .insertOne(newHitzone, function (err, result) {
+    if (err) {
+      res.status(400).send("Error inserting new hitzone!");
+    } else {
+      console.log(`Added a new hitzone`);
+      res.status(204).send();
+    }
+  });
+
+});
+
+recordRoutes.route("/postMove").post(async function (req, res){
+  const dbConnect = dbo.getDb();
+  const newMove = {
+    MoveID: req.body.MoveID,
+    MoveName: req.body.MoveName,
+    DamageType: req.body.DamageType,
+    RawMV: req.body.RawMV,
+    EleMV: req.body.EleMV,
+    WeaponName: req.body.WeaponName
+  }
+
+  dbConnect
+  .collection("WeaponCollection")
+  .insertOne(newMove, function (err, result) {
+    if (err) {
+      res.status(400).send("Error inserting new move!");
+    } else {
+      console.log(`Added a new move`);
+      res.status(204).send();
+    }
+  });
+
+});
+
 // // This section will help you delete a record.
 // recordRoutes.route('/listings/delete/:id').delete((req, res) => {
 //   const dbConnect = dbo.getDb();

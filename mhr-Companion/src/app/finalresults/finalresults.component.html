@@ -2,9 +2,59 @@
     <div class="card-header">{{ pageTitle }}</div>
     <div class="card-body">
       <div class="row">
-        <p>If you {{mathMV.MoveName}} the {{mathHZ.parts_name}} with your {{math.raw}} raw {{math.ele}} {{math.eleType}} {{math.sharpness}} sharpness {{mathMV.WeaponName}}, this is the result:</p>
-        <p>You will do {{results.raw_no_crit}} raw damage and {{results.ele_no_crit}} {{math.eleType}} damage without a crit, but {{results.raw_crit}} and {{results.ele_crit}} {{math.eleType}} damage with a crit.</p>
-        <p>With an overall chance of {{results.crit_chance}}% to crit, this works out to an average of {{results.raw_avg}} raw damage and {{results.ele_avg}} {{math.eleType}} damage for a total of {{results.sum_avg}} damage.</p>
+        <p>If you use {{mathMV.MoveName}} on {{this.monsterName}}'s {{mathHZ.parts_name}} with your {{math.raw}} raw {{math.ele}} {{math.eleType}} {{math.sharpness}} sharpness {{this.readableWepName}}, this is the result:</p>
+        <!-- <p>You will do {{results.raw_no_crit}} raw damage and {{results.ele_no_crit}} {{math.eleType}} damage without a crit, but {{results.raw_crit}} and {{results.ele_crit}} {{math.eleType}} damage with a crit.</p>
+        <p>With an overall chance of {{results.crit_chance}}% to crit, this works out to an average of {{results.raw_avg}} raw damage and {{results.ele_avg}} {{math.eleType}} damage for a total of {{results.sum_avg}} damage.</p> -->
+      </div>
+
+      <div class="table-responsive">
+        <table style="width:100%" class="table table-dark">
+          <thead class="thead-light">
+            <tr>
+              <th style="width:20%">
+                <select
+                  class="form-control w-25"
+                  id="digits"
+                  name="digits"
+                  formcontrolName="digits"
+                  [(ngModel)]="digits"
+                  (click)="chooseDigits($event, digits)">
+                  <option [value] = 0>0</option>
+                  <option [value] = 1>1</option>
+                  <option [value] = 2>2</option>
+                  <option [value] = 3>3</option>
+                  <option [value] = 4>4</option>
+                </select></th>
+              <th>raw</th>
+              <th>{{math.eleType}}</th>
+              <th>total</th>
+            </tr>
+            <tr>
+              <td>no crit</td>
+              <td>{{results.raw_no_crit.toFixed(this.digits)}}</td>
+              <td>{{results.ele_no_crit.toFixed(this.digits)}}</td>
+              <td>{{results.sum_no_crit.toFixed(this.digits)}}</td>
+            </tr>
+            <tr>
+              <td>crit ({{results.crit_chance}}% chance)</td>
+              <td>{{results.raw_crit.toFixed(this.digits)}}</td>
+              <td>{{results.ele_crit.toFixed(this.digits)}}</td>
+              <td>{{results.sum_crit.toFixed(this.digits)}}</td>
+            </tr>
+            <tr>
+              <td>average dmg output</td>
+              <td>{{results.raw_avg.toFixed(this.digits)}}</td>
+              <td>{{results.ele_avg.toFixed(this.digits)}}</td>
+              <td>{{results.sum_avg.toFixed(this.digits)}}</td>
+            </tr>
+            <tr *ngIf="edited">
+              <td>{{this.skillName}} Level {{this.skillLevel}}</td>
+              <td>{{this.raw_avg_diff.toFixed(this.digits)}}</td>
+              <td>{{this.ele_avg_diff.toFixed(this.digits)}}</td>
+              <td>{{this.sum_avg_diff.toFixed(this.digits)}}</td>
+            </tr>
+          </thead>
+        </table>
       </div>
 
       <!-- <div class="form-group">
@@ -24,7 +74,7 @@
       </div> -->
 
       <div class="form-group">
-        <label for="sharpness" class="form-label"> Select a skill to investigate: </label>
+        <label for="skill" class="form-label"> Select a skill to investigate: </label>
         <select
           class="form-control w-25"
           id="skill"
@@ -50,10 +100,11 @@
           <option [value] = 16>Dereliction</option>
           <option [value] = 17>Burst</option>
         </select>
+        <span *ngIf="edited">Tooltip: {{this.skillDescrip}}</span>
       </div>
-      <div id="comparison" *ngIf="edited">This skill was contributes an average of {{sum_avg_diff}}
-         damage to your total of {{results.sum_avg}}, making up {{percentage_diff}}% of your total damage.
-         The skill overall is worth {{diff_per_point}} damage per point, or {{percentage_diff_per_point}}% damage per point.</div>
+      <br>      
+      <div id="comparison" *ngIf="edited">This skill contributes {{percentage_diff.toFixed(this.digits)}}% of your average damage output.
+         The skill overall is worth {{diff_per_point.toFixed(this.digits)}} damage per point, or {{percentage_diff_per_point.toFixed(this.digits)}}% damage per point.</div>
          <div id="alert" *ngIf="edited2">You don't even have this armor skill!</div>
 
 
