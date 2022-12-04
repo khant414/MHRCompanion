@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IResults, ISkillName } from './resultscontainer';
 import { FinalResultsService } from './finalresults.service';
+import { ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-finalresults',
@@ -9,6 +10,20 @@ import { FinalResultsService } from './finalresults.service';
   styleUrls: ['./finalresults.component.css']
 })
 export class FinalresultsComponent implements OnInit {
+
+  public selectedData = {
+    MoveID: "",
+    MoveName:"",
+    DamageType: "",
+    RawMV: "",
+    EleMV: "",
+    WeaponName: ""
+  };
+
+
+
+
+
 
   public edited = false;
   public edited2 = false;
@@ -51,7 +66,7 @@ export class FinalresultsComponent implements OnInit {
 
   results: IResults = {
     "crit_chance": 0,
-    
+
     "raw_no_crit": 0,
     "ele_no_crit": 0,
     "sum_no_crit": 0,
@@ -67,7 +82,7 @@ export class FinalresultsComponent implements OnInit {
 
   results2: IResults = {
     "crit_chance": 0,
-    
+
     "raw_no_crit": 0,
     "ele_no_crit": 0,
     "sum_no_crit": 0,
@@ -127,32 +142,34 @@ export class FinalresultsComponent implements OnInit {
     "WeaponName": "LA"
   }
 
-  
+
 
   constructor(private route: ActivatedRoute, private finalresultsService: FinalResultsService) { }
 
   ngOnInit(): void {
     //router call from the previous page that stores our motion value information
-    const MoveID = this.route.snapshot.paramMap.get('MoveID');
-    const MoveName = this.route.snapshot.paramMap.get('MoveName');
-    const DamageType = this.route.snapshot.paramMap.get('DamageType');
-    const RawMV = this.route.snapshot.paramMap.get('RawMV');
-    const EleMV = this.route.snapshot.paramMap.get('EleMV');
-    const WeaponName = this.route.snapshot.paramMap.get('WeaponName');
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.selectedData.MoveID = String(params.get('MoveID'));
+      this.selectedData.MoveName = String(params.get('MoveName'));
+      this.selectedData.DamageType = String(params.get('DamageType'));
+      this.selectedData.RawMV = String(params.get('RawMV'));
+      this.selectedData.EleMV = String(params.get('EleMV'));
+      this.selectedData.WeaponName = String(params.get('WeaponName'));
+    });
+
 
     //page title doesn't actually have to be updated... this is just to show what we have
-    this.pageTitle += ` MoveID: ${MoveID}` + ` MoveName: ${MoveName}` + ` DamageType: ${DamageType}`
-    + ` RawMV: ${RawMV}` + ` EleMV: ${EleMV}` + ` WeaponName: ${WeaponName}`;
-    
+    this.pageTitle += ` MoveID: ${this.selectedData.MoveID}` + ` MoveName: ${this.selectedData.MoveName}` + ` DamageType: ${this.selectedData.DamageType}`
+      + ` RawMV: ${this.selectedData.RawMV}` + ` EleMV: ${this.selectedData.EleMV}` + ` WeaponName: ${this.selectedData.WeaponName}`;
+
     //check that these values are not null, then add them to the mv container
     //now we can do whatever we want with them
-    if (MoveID != null && MoveName != null && DamageType != null && RawMV != null && EleMV != null && WeaponName != null){
-      this.mathMV.MoveID = Number(MoveID);
-      this.mathMV.MoveName = MoveName;
-      this.mathMV.DamageType = DamageType.toLocaleLowerCase();
-      this.mathMV.RawMV = Number(RawMV);
-      this.mathMV.EleMV = Number(EleMV);
-      this.mathMV.WeaponName = WeaponName;
+    if (this.selectedData.MoveID != "" && this.selectedData.MoveName != "" && this.selectedData.DamageType != "" && this.selectedData.RawMV != "" && this.selectedData.EleMV != "" && this.selectedData.WeaponName != "") {      this.mathMV.MoveID = Number(this.selectedData.MoveID);
+      this.mathMV.MoveName = this.selectedData.MoveName;
+      this.mathMV.DamageType = this.selectedData.DamageType.toLocaleLowerCase();
+      this.mathMV.RawMV = Number(this.selectedData.RawMV);
+      this.mathMV.EleMV = Number(this.selectedData.EleMV);
+      this.mathMV.WeaponName = this.selectedData.WeaponName;
     }
 
     //saved settings
@@ -172,7 +189,7 @@ export class FinalresultsComponent implements OnInit {
 
 
 
-    
+
 
 
     //this is where we'd call the service
@@ -184,7 +201,7 @@ export class FinalresultsComponent implements OnInit {
 
 
 
-    
+
 
 
     // this.flatraw = this.math.raw;
@@ -436,7 +453,7 @@ export class FinalresultsComponent implements OnInit {
     //     this.flatraw *= 1.1;
     //     break;
     //   }
-      
+
     // }
 
     // //raw percentage modifers (done after attack boost)
@@ -539,7 +556,7 @@ export class FinalresultsComponent implements OnInit {
     //     this.critchance += 40;
     //     break;
     //   }
-      
+
     // }
 
     // switch (this.math.maxmight){
@@ -892,7 +909,7 @@ export class FinalresultsComponent implements OnInit {
     // this.results.ele_avg = Math.round(this.results.ele_avg);
 
 
-    
+
 
 
   }
@@ -900,7 +917,7 @@ export class FinalresultsComponent implements OnInit {
 
   //  extra feature: sets a selected skill level to 0 and reruns calculations.
   //  this is meant to give the user an idea of how valuable each skillpoint is.
-  public zeroComparison(event: any, skillSelect: number){
+  public zeroComparison(event: any, skillSelect: number) {
     // console.log("function called");
     // console.log(event.target.value);
 
@@ -913,7 +930,7 @@ export class FinalresultsComponent implements OnInit {
     let storedLevel = 0;
 
 
-    switch (Number(event.target.value)){
+    switch (Number(event.target.value)) {
 
       // each switch statement will first store the level of the selected skill.
       // the selected skill is then set to ZERO.
@@ -921,9 +938,9 @@ export class FinalresultsComponent implements OnInit {
 
       case 1:
         storedLevel = this.math.wex;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.wex = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
@@ -931,9 +948,9 @@ export class FinalresultsComponent implements OnInit {
         break;
       case 2:
         storedLevel = this.math.critboost;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.critboost = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
@@ -941,104 +958,104 @@ export class FinalresultsComponent implements OnInit {
         break;
       case 3:
         storedLevel = this.math.criteye;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.criteye = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
-          this.edited = true;
-        } else {
-          this.edited2 = true;
-        }        
-        break;
-      case 4:
-        storedLevel = this.math.atkboost;
-        if (storedLevel > 0){
-          this.math.atkboost = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
-          this.edited = true;
-        } else {
-          this.edited2 = true;
-        }           
-        break;
-      case 5:
-        storedLevel = this.math.agitator;
-        if (storedLevel > 0){
-          this.math.agitator = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
-          this.edited = true;
-        } else {
-          this.edited2 = true;
-        }        
-        break;
-      case 6:
-        storedLevel = this.math.peakperf;
-        if (storedLevel > 0){
-          this.math.peakperf = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
         }
-        
+        break;
+      case 4:
+        storedLevel = this.math.atkboost;
+        if (storedLevel > 0) {
+          this.math.atkboost = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+        break;
+      case 5:
+        storedLevel = this.math.agitator;
+        if (storedLevel > 0) {
+          this.math.agitator = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+        break;
+      case 6:
+        storedLevel = this.math.peakperf;
+        if (storedLevel > 0) {
+          this.math.peakperf = 0;
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
+          this.edited = true;
+        } else {
+          this.edited2 = true;
+        }
+
         break;
       case 7:
         storedLevel = this.math.resentment;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.resentment = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
-        }        
+        }
         break;
       case 8:
         storedLevel = this.math.resuscitate;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.resuscitate = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
-        }  
-       
+        }
+
         break;
       case 9:
         storedLevel = this.math.maxmight;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.maxmight = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
-        }  
-        
+        }
+
         break;
       case 10:
         storedLevel = this.math.critele;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.critele = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
-        } 
-       
+        }
+
         break;
       case 11:
         storedLevel = this.math.offensiveguard;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.offensiveguard = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
-        } 
+        }
 
         break;
       case 12:
         storedLevel = this.math.eleatkup;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.eleatkup = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
@@ -1047,9 +1064,9 @@ export class FinalresultsComponent implements OnInit {
         break;
       case 13:
         storedLevel = this.math.counterstrike;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.counterstrike = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
@@ -1058,9 +1075,9 @@ export class FinalresultsComponent implements OnInit {
         break;
       case 14:
         storedLevel = this.math.eleexploit;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.eleexploit = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
@@ -1069,9 +1086,9 @@ export class FinalresultsComponent implements OnInit {
         break;
       case 15:
         storedLevel = this.math.mailofhellfire;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.mailofhellfire = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
@@ -1080,9 +1097,9 @@ export class FinalresultsComponent implements OnInit {
         break;
       case 16:
         storedLevel = this.math.dereliction;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.dereliction = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
@@ -1091,9 +1108,9 @@ export class FinalresultsComponent implements OnInit {
         break;
       case 17:
         storedLevel = this.math.burst;
-        if (storedLevel > 0){
+        if (storedLevel > 0) {
           this.math.burst = 0;
-          this.results2 = this.finalresultsService.doFinalCalcs(this.math,this.mathHZ, this.mathMV);
+          this.results2 = this.finalresultsService.doFinalCalcs(this.math, this.mathHZ, this.mathMV);
           this.edited = true;
         } else {
           this.edited2 = true;
@@ -1114,21 +1131,21 @@ export class FinalresultsComponent implements OnInit {
     this.ele_avg_diff = this.results.ele_avg - this.results2.ele_avg;
     this.sum_avg_diff = this.results.sum_avg - this.results2.sum_avg;
 
-    this.diff_per_point = this.sum_avg_diff/storedLevel;
+    this.diff_per_point = this.sum_avg_diff / storedLevel;
 
-    this.percentage_diff = (this.sum_avg_diff/this.results.sum_avg) * 100;
+    this.percentage_diff = (this.sum_avg_diff / this.results.sum_avg) * 100;
 
-    this.percentage_diff_per_point = (this.percentage_diff/storedLevel);
+    this.percentage_diff_per_point = (this.percentage_diff / storedLevel);
 
     // this.edited = true;
     console.log("This skill was contributing an average of " + this.sum_avg_diff +
-     " damage to your total of " + this.results.sum_avg + ", making up " + this.percentage_diff +
-     "% of your total damage. The skill overall was worth " + this.diff_per_point + " damage per point, or " +
-     this.percentage_diff_per_point + "% damage per level.");
+      " damage to your total of " + this.results.sum_avg + ", making up " + this.percentage_diff +
+      "% of your total damage. The skill overall was worth " + this.diff_per_point + " damage per point, or " +
+      this.percentage_diff_per_point + "% damage per level.");
 
   }
 
-  resetSavedMath(){
+  resetSavedMath() {
     let importedUser = JSON.parse(localStorage.getItem("savedSettings")!);
     this.math.raw = Number(importedUser.raw);
     this.math.sharpness = importedUser.sharpness.toLocaleLowerCase();
@@ -1157,19 +1174,19 @@ export class FinalresultsComponent implements OnInit {
 
   //sets all differences to 0 to prep for another skill comparison.
   //also blanks out the percentage difference text on screen.
-  resetDiffs(){
+  resetDiffs() {
     this.raw_no_crit_diff = 0;
     this.ele_no_crit_diff = 0;
     this.sum_no_crit_diff = 0;
-  
+
     this.raw_crit_diff = 0;
     this.ele_crit_diff = 0;
     this.sum_crit_diff = 0;
-  
+
     this.raw_avg_diff = 0;
     this.ele_avg_diff = 0;
     this.sum_avg_diff = 0;
-  
+
     this.diff_per_point = 0;
     this.percentage_diff = 0;
     this.percentage_diff_per_point = 0;

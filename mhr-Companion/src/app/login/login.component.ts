@@ -1,6 +1,8 @@
 // google  (code from   https://github.com/ShemiNechmad/GoogleSignInAngular )
 //import { Component, OnInit } from '@angular/core';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 declare var google: any;
 // end google
 // make sure you mention both http://localhost and http://localhost:4200
@@ -21,6 +23,7 @@ declare var google: any;
 export class LoginComponent implements OnInit {
   display: boolean = true;
   welcomeMessage?: string;
+
   // newUser: NewUser = {
   //   userName: "",
   //   pw: ""
@@ -30,7 +33,7 @@ export class LoginComponent implements OnInit {
   //   pw: "",
   //   _id: ""
   // }
-  
+
 
   // now ceate user accounts at Google, not here
   // CreateAccount(pUserName:string, pPw:string): void {      //newuser does not have an _id
@@ -64,7 +67,7 @@ export class LoginComponent implements OnInit {
   //       this.existingUser._id = data;
   //       sessionStorage.setItem('ID:', data );
   //       sessionStorage.setItem('Name:', this.newUser.userName);
- 
+
   //       this.display = true;
   //       console.log("in login " + this.display);
   //       //window.location.href = '/dashboard';
@@ -72,71 +75,82 @@ export class LoginComponent implements OnInit {
   //      });
   // }
 
-  logout(): void{
+  logout(): void {
     sessionStorage.removeItem("ID:");  //how to get it back to null
     sessionStorage.setItem('Name:', "");
     sessionStorage.setItem('Picture:', "");
-    this.display = false;
+    this.display = true;
     console.log("in logout " + this.display);
+    this.zone.run(() => {
+      this.router.navigate(['/']);
+    });
+    this.CheckDisplay();
     //window.location.href = '/';
   }
 
-  //constructor(private userService: UserService) { }  // don't need a user server
-  // unless you want to control who can login
-  constructor() { }
+  constructor(private router: Router,private zone: NgZone) { }
 
-     ngOnInit(): void {
-        // this.existingUser = {
-        //   userName: "",
-        //   pw: "",
-        //   _id: ""
-        // }
-      console.log(sessionStorage.getItem('ID:'))
-        if( sessionStorage.getItem('ID:') == null ) {
-          this.display = false;
-        }
-        else {
-          var x = sessionStorage.getItem('ID:');
-          if (x != null){
-            var y = sessionStorage.getItem('Name:');
-          this.display = true;
-          this.welcomeMessage = y!.toString();
-        }
+  ngOnInit(): void {
+    // this.existingUser = {
+    //   userName: "",
+    //   pw: "",
+    //   _id: ""
+    // }
+    //console.log(sessionStorage.getItem('ID:'))
+    this.CheckDisplay();
+
+  }
+
+  CheckDisplay():void {
+    if (sessionStorage.getItem('ID:') == null) {
+      this.display = false;
+    }
+    else {
+      var x = sessionStorage.getItem('ID:');
+      if (x != null) {
+        var y = sessionStorage.getItem('Name:');
+        this.display = true;
+        this.welcomeMessage = y!.toString();
       }
-  
     }
+  }
 
 
-    ngAfterViewInit(): void {
-      // this key is under my vfrkurt google account
-      google.accounts.id.initialize({
-        client_id: "94517963432-ot1jb9u9jllpftivun571kt5tbiut1cu.apps.googleusercontent.com",
-        callback: (response: any) => this.handleGoogleSignIn(response)
+  ngAfterViewInit(): void {
+    // this key is under my vfrkurt google account
+    google.accounts.id.initialize({
+      client_id: "94517963432-ot1jb9u9jllpftivun571kt5tbiut1cu.apps.googleusercontent.com",
+      callback: (response: any) => this.handleGoogleSignIn(response)
 
-      });
-      google.accounts.id.renderButton(
-        document.getElementById("buttonDiv"),
-        { size: "large", type: "icon", shape: "rectangular", theme:"filled_blue" }  // customization attributes
-      );
-    }
-  
-    handleGoogleSignIn(response: any): void {
-      // This next is for decoding the idToken to an object if you want to see the details.
-      let base64Url = response.credential.split('.')[1];
-      let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      console.log(JSON.parse(jsonPayload));
-      var googleobject = JSON.parse(jsonPayload);
-      console.log(googleobject.name);
-      console.log(googleobject.iat);
-      sessionStorage.setItem('ID:', googleobject.sub ); // The unique ID of the user's Google Account
-      sessionStorage.setItem('Name:', googleobject.name);
-      sessionStorage.setItem('Picture:', googleobject.picture);
-      this.display = true;
-      window.location.href = '/';
-    }
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { size: "large", type: "icon", shape: "rectangular", theme: "filled_blue" }  // customization attributes
+    );
+    this.CheckDisplay();
+  }
+
+  handleGoogleSignIn(response: any): void {
+    // This next is for decoding the idToken to an object if you want to see the details.
+    let base64Url = response.credential.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    console.log(JSON.parse(jsonPayload));
+    var googleobject = JSON.parse(jsonPayload);
+    console.log(googleobject.name);
+    console.log(googleobject.iat);
+    sessionStorage.setItem('ID:', googleobject.sub); // The unique ID of the user's Google Account
+    sessionStorage.setItem('Name:', googleobject.name);
+    sessionStorage.setItem('Picture:', googleobject.picture);
+    this.display = true;
+
+    this.zone.run(() => {
+          this.router.navigate(['/app-user-settings-form']);
+        });
+    
+  }
 
 }
 

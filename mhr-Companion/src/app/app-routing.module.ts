@@ -9,7 +9,7 @@ import { Motion_ZoneComponent } from './motion_zones/motion_zones.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
-{ path: '', redirectTo: '/', pathMatch: 'full' },
+{ path: '', redirectTo: '/app-home', pathMatch: 'full' },
 { path: 'pm-motion_zone', component: Motion_ZoneComponent },
 { path: 'pm-motion_zone/:parts_name/:hit_slash/:hit_strike/:hit_shot/:element_fire/:element_water/:element_ice/:element_thunder/:element_dragon', component: Motion_ZoneComponent },
 { path: 'app-home', component: HomeComponent},

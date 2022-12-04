@@ -1,7 +1,7 @@
-<div class="container" *ngIf="display" [hidden]="form.submitted">
+<div class="container" [hidden]="form.submitted">
+  <!-- *ngIf="display" -->
+
   <h2>Input Your Character Stats</h2>
-
-
 
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <!--googleid input-->
@@ -61,7 +61,8 @@
         id="eleType"
         name="eleType"
         placeholder=""
-        [(ngModel)]="userSettings.eleType">
+        [(ngModel)]="userSettings.eleType"
+      >
         <option>Fire</option>
         <option>Water</option>
         <option>Thunder</option>
@@ -331,8 +332,6 @@
       />
     </div>
 
-
-
     <button class="btn btn-primary">Send</button>
     {{ form.valueChanges | json }}
     <div style="background-color: green">form value changes</div>
@@ -349,11 +348,10 @@
       id="monstername"
       name="monstername"
       formcontrolName="monstername"
-      [(ngModel)]="targetMonster">
-      <option *ngFor="let monstername of monsternames" 
-      [value]="monstername"
-      >
-      {{monstername}}                       
+      [(ngModel)]="targetMonster"
+    >
+      <option *ngFor="let monstername of monsternames" [value]="monstername">
+        {{ monstername }}
       </option>
     </select>
   </div>
@@ -365,14 +363,14 @@
       id="weaponname"
       name="weaponname"
       formcontrolName="weaponname"
-      [(ngModel)]="weaponUsed">
-      <option *ngFor="let weaponname of weaponnames" 
-      [value]="weaponname.WeaponName"
+      [(ngModel)]="weaponUsed"
+    >
+      <option
+        *ngFor="let weaponname of weaponnames"
+        [value]="weaponname.WeaponName"
       >
-      {{weaponname.WeaponName}}                       
+        {{ weaponname.WeaponName }}
       </option>
     </select>
   </div>
-
-
 </div>
