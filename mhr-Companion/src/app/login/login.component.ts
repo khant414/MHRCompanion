@@ -84,7 +84,6 @@ export class LoginComponent implements OnInit {
     this.zone.run(() => {
       this.router.navigate(['/']);
     });
-    this.CheckDisplay();
     //window.location.href = '/';
   }
 
@@ -127,7 +126,6 @@ export class LoginComponent implements OnInit {
       document.getElementById("buttonDiv"),
       { size: "large", type: "icon", shape: "rectangular", theme: "filled_blue" }  // customization attributes
     );
-    this.CheckDisplay();
   }
 
   handleGoogleSignIn(response: any): void {
