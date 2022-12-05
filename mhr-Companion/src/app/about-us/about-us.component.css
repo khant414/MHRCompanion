@@ -6,14 +6,10 @@ thead {
 div.about{
     margin: 20px;
     height: 100vh;
+    
 }
 
 .background {
     background-image: url("../../assets/images/backgroundsmallesttilelightest.png");
-    height: 100%;
 
-}
-
-.card-body{
-    height: 100%;
 }

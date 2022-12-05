@@ -7,3 +7,7 @@ thead {
     background-image: url("../../assets/images/backgroundsmallesttilelightest.png");
 
 }
+
+.card-body{
+    height: 100vh;
+}
