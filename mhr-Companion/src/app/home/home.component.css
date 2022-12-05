@@ -9,3 +9,8 @@ a.cool{
     color: blue;
     font-size: 14px;
 }
+
+.background {
+    background-image: url("../../assets/images/backgroundsmallesttilelightest.png");
+
+}

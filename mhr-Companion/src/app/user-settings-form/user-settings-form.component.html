@@ -1,10 +1,12 @@
 <div class="container" [hidden]="form.submitted">
   <!-- *ngIf="display" -->
 
+
   <h2>Input Your Character Stats</h2>
 
+
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-    <!--googleid input-->
+    <!--googleid input
     <div class="form-group">
       <label for="googleid" class="form-label"> googleid: </label>
       <input
@@ -16,8 +18,10 @@
         placeholder=""
         [(ngModel)]="userSettings.googleid"
       />
-    </div>
+    </div>-->
+
     <!--raw input-->
+    <div class="form">
     <div class="form-group">
       <label for="raw" class="form-label"> raw: </label>
       <input
@@ -122,6 +126,7 @@
         [(ngModel)]="userSettings.wex"
       />
     </div>
+
     <!--critboost input-->
     <div class="form-group">
       <label for="critboost" class="form-label"> critboost: </label>
@@ -174,6 +179,7 @@
         [(ngModel)]="userSettings.agitator"
       />
     </div>
+
     <!--peakperf input-->
     <div class="form-group">
       <label for="peakperf" class="form-label"> peakperf: </label>
@@ -187,7 +193,10 @@
         [(ngModel)]="userSettings.peakperf"
       />
     </div>
+
+
     <!--resentment input-->
+
     <div class="form-group">
       <label for="resentment" class="form-label"> resentment: </label>
       <input
@@ -200,6 +209,7 @@
         [(ngModel)]="userSettings.resentment"
       />
     </div>
+
     <!--resuscitate input-->
     <div class="form-group">
       <label for="resuscitate" class="form-label"> resuscitate: </label>
@@ -213,7 +223,9 @@
         [(ngModel)]="userSettings.resuscitate"
       />
     </div>
+
     <!--maxmight input-->
+   
     <div class="form-group">
       <label for="maxmight" class="form-label"> maxmight: </label>
       <input
@@ -278,6 +290,7 @@
         [(ngModel)]="userSettings.counterstrike"
       />
     </div>
+    
     <!--eleexploit input-->
     <div class="form-group">
       <label for="eleexploit" class="form-label"> eleexploit: </label>
@@ -331,6 +344,7 @@
         [(ngModel)]="userSettings.burst"
       />
     </div>
+    </div>
 
     <button class="btn btn-primary">Send</button>
     {{ form.valueChanges | json }}
@@ -340,6 +354,7 @@
     <div style="background-color: green">form object</div>
     <br style="background-color: green" /><br />
   </form>
+
 
   <div class="form-group">
     <label for="monstername"> Monster to target: </label>
@@ -374,3 +389,4 @@
     </select>
   </div>
 </div>
+

@@ -28,8 +28,10 @@ export class HitZoneComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
 
+
     let monsterName = sessionStorage.getItem("targetMonster");
     console.log(monsterName)
+
     //this.hitzones = this.hitzoneService.getHitzones();
     //call the HitzoneService to fill "hitzones" array with data
     // this.sub = this.hitzoneService.getGoreHitzones().subscribe({
@@ -37,6 +39,7 @@ export class HitZoneComponent implements OnInit, OnDestroy {
     //   error: err => this.errorMessage = err
     // });
 
+    this.pageTitle += ` Monster: ${monsterName}`;
 
     this.sub = this.hitzoneService.getHitzones(monsterName!).subscribe({
       next: hitzones =>{
