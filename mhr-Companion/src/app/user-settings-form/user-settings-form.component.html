@@ -2,9 +2,42 @@
   <h2>Input Your Character Stats</h2>
 
 
+  <div class="form2">
+  <div class="form-group">
+    <label for="monstername"> Monster to target: </label>
+    <select
+      class="form-control w-25"
+      id="monstername"
+      name="monstername"
+      formcontrolName="monstername"
+      [(ngModel)]="targetMonster">
+      <option *ngFor="let monstername of monsternames" 
+      [value]="monstername"
+      >
+      {{monstername}}                       
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="weaponname"> Weapon: </label>
+    <select
+      class="form-control w-25"
+      id="weaponname"
+      name="weaponname"
+      formcontrolName="weaponname"
+      [(ngModel)]="weaponUsed">
+      <option *ngFor="let weaponname of weaponnames" 
+      [value]="weaponname.WeaponName"
+      >
+      {{weaponname.WeaponName}}                       
+      </option>
+    </select>
+  </div>
+  </div>
 
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-    <!--googleid input-->
+    <!--googleid input
     <div class="form-group">
       <label for="googleid" class="form-label"> googleid: </label>
       <input
@@ -16,8 +49,10 @@
         placeholder=""
         [(ngModel)]="userSettings.googleid"
       />
-    </div>
+    </div>-->
+
     <!--raw input-->
+    <div class="form">
     <div class="form-group">
       <label for="raw" class="form-label"> raw: </label>
       <input
@@ -121,6 +156,7 @@
         [(ngModel)]="userSettings.wex"
       />
     </div>
+
     <!--critboost input-->
     <div class="form-group">
       <label for="critboost" class="form-label"> critboost: </label>
@@ -173,6 +209,7 @@
         [(ngModel)]="userSettings.agitator"
       />
     </div>
+
     <!--peakperf input-->
     <div class="form-group">
       <label for="peakperf" class="form-label"> peakperf: </label>
@@ -186,7 +223,10 @@
         [(ngModel)]="userSettings.peakperf"
       />
     </div>
+
+
     <!--resentment input-->
+
     <div class="form-group">
       <label for="resentment" class="form-label"> resentment: </label>
       <input
@@ -199,6 +239,7 @@
         [(ngModel)]="userSettings.resentment"
       />
     </div>
+
     <!--resuscitate input-->
     <div class="form-group">
       <label for="resuscitate" class="form-label"> resuscitate: </label>
@@ -212,7 +253,9 @@
         [(ngModel)]="userSettings.resuscitate"
       />
     </div>
+
     <!--maxmight input-->
+   
     <div class="form-group">
       <label for="maxmight" class="form-label"> maxmight: </label>
       <input
@@ -277,6 +320,7 @@
         [(ngModel)]="userSettings.counterstrike"
       />
     </div>
+    
     <!--eleexploit input-->
     <div class="form-group">
       <label for="eleexploit" class="form-label"> eleexploit: </label>
@@ -330,6 +374,7 @@
         [(ngModel)]="userSettings.burst"
       />
     </div>
+    </div>
 
 
 
@@ -342,37 +387,7 @@
     <br style="background-color: green" /><br />
   </form>
 
-  <div class="form-group">
-    <label for="monstername"> Monster to target: </label>
-    <select
-      class="form-control w-25"
-      id="monstername"
-      name="monstername"
-      formcontrolName="monstername"
-      [(ngModel)]="targetMonster">
-      <option *ngFor="let monstername of monsternames" 
-      [value]="monstername"
-      >
-      {{monstername}}                       
-      </option>
-    </select>
-  </div>
 
-  <div class="form-group">
-    <label for="weaponname"> Weapon: </label>
-    <select
-      class="form-control w-25"
-      id="weaponname"
-      name="weaponname"
-      formcontrolName="weaponname"
-      [(ngModel)]="weaponUsed">
-      <option *ngFor="let weaponname of weaponnames" 
-      [value]="weaponname.WeaponName"
-      >
-      {{weaponname.WeaponName}}                       
-      </option>
-    </select>
-  </div>
 
 
 </div>

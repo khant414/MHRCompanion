@@ -123,6 +123,7 @@ export class HitZoneComponent implements OnInit, OnDestroy {
 
 
     const monsterName = sessionStorage.getItem("targetMonster");
+
     
     //this.hitzones = this.hitzoneService.getHitzones();
     //call the HitzoneService to fill "hitzones" array with data
@@ -131,6 +132,7 @@ export class HitZoneComponent implements OnInit, OnDestroy {
     //   error: err => this.errorMessage = err
     // });
 
+    this.pageTitle += ` Monster: ${monsterName}`;
 
     this.sub = this.hitzoneService.getHitzones(monsterName!).subscribe({
       next: hitzones =>{
