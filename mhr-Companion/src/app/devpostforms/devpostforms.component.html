@@ -1,0 +1,270 @@
+<div class="container">
+    <h2>DEV USE ONLY</h2>
+  
+  
+  
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <!--id input-->
+      <div class="form-group">
+        <label for="googleid" class="form-label"> monsterid: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="monsterid"
+          name="monsterid"
+          formcontrolName="monsterid"
+          placeholder=""
+          [(ngModel)]="newHitzone.MonsterID"
+        />
+      </div>
+      <!--name input-->
+      <div class="form-group">
+        <label for="monstername" class="form-label"> monstername: </label>
+        <input
+          type="string"
+          class="form-control w-25"
+          id="monstername"
+          name="monstername"
+          formcontrolName="monstername"
+          placeholder=""
+          [(ngModel)]="newHitzone.MonsterName"
+          required
+        />
+      </div>
+      
+      <!--part name input-->
+      <div class="form-group">
+        <label for="parts_name" class="form-label"> parts_name: </label>
+        <input
+          type="string"
+          class="form-control w-25"
+          id="parts_name"
+          name="parts_name"
+          formcontrolName="parts_name"
+          placeholder=""
+          [(ngModel)]="newHitzone.parts_name"
+          required
+        />
+      </div>
+
+      <!--slash strike and shot-->
+
+      <div class="form-group">
+        <label for="hit_slash" class="form-label"> hit_slash: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="hit_slash"
+          name="hit_slash"
+          formcontrolName="hit_slash"
+          placeholder=""
+          [(ngModel)]="newHitzone.hit_slash"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="hit_strike" class="form-label"> hit_strike: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="hit_strike"
+          name="hit_strike"
+          formcontrolName="hit_strike"
+          placeholder=""
+          [(ngModel)]="newHitzone.hit_strike"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="hit_shot" class="form-label"> hit_shot: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="hit_shot"
+          name="hit_shot"
+          formcontrolName="hit_shot"
+          placeholder=""
+          [(ngModel)]="newHitzone.hit_shot"
+        />
+      </div>
+
+      <!-- elements -->
+
+      <div class="form-group">
+        <label for="element_fire" class="form-label"> element_fire: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="element_fire"
+          name="element_fire"
+          formcontrolName="element_fire"
+          placeholder=""
+          [(ngModel)]="newHitzone.element_fire"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="element_water" class="form-label"> element_water: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="element_water"
+          name="element_water"
+          formcontrolName="element_water"
+          placeholder=""
+          [(ngModel)]="newHitzone.element_water"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="element_ice" class="form-label"> element_ice: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="element_ice"
+          name="element_ice"
+          formcontrolName="element_ice"
+          placeholder=""
+          [(ngModel)]="newHitzone.element_ice"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="element_thunder" class="form-label"> element_thunder: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="element_thunder"
+          name="element_thunder"
+          formcontrolName="element_thunder"
+          placeholder=""
+          [(ngModel)]="newHitzone.element_thunder"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="element_dragon" class="form-label"> element_dragon: </label>
+        <input
+          type="number"
+          class="form-control w-25"
+          id="element_dragon"
+          name="element_dragon"
+          formcontrolName="element_dragon"
+          placeholder=""
+          [(ngModel)]="newHitzone.element_dragon"
+        />
+      </div>  
+  
+      <button class="btn btn-primary">Send</button>
+    </form>
+
+
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <!--id input-->
+        <div class="form-group">
+          <label for="MoveID" class="form-label"> MoveID: </label>
+          <input
+            type="number"
+            class="form-control w-25"
+            id="MoveID"
+            name="MoveID"
+            formcontrolName="MoveID"
+            placeholder=""
+            [(ngModel)]="newMove.MoveID"
+          />
+        </div>
+        <!--name input-->
+        <div class="form-group">
+          <label for="MoveName" class="form-label"> MoveName: </label>
+          <input
+            type="string"
+            class="form-control w-25"
+            id="MoveName"
+            name="MoveName"
+            formcontrolName="MoveName"
+            placeholder=""
+            [(ngModel)]="newMove.MoveName"
+            required
+          />
+        </div>
+        <!-- damagetype -->
+        <div class="form-group">
+            <label for="DamageType" class="form-label"> DamageType: </label>
+            <select
+              class="form-control w-25"
+              id="DamageType"
+              name="DamageType"
+              formcontrolName="DamageType"
+              [(ngModel)]="newMove.DamageType"
+            >
+              <option>Sever</option>
+              <option>Blunt</option>
+              <option>Shot</option>
+            </select>
+          </div>
+        
+        <!--part name input-->
+        <div class="form-group">
+          <label for="RawMV" class="form-label"> RawMV: </label>
+          <input
+            type="number"
+            class="form-control w-25"
+            id="RawMV"
+            name="RawMV"
+            formcontrolName="RawMV"
+            placeholder=""
+            [(ngModel)]="newMove.RawMV"
+            required
+          />
+        </div>
+  
+        <!--slash strike and shot-->
+  
+        <div class="form-group">
+          <label for="EleMV" class="form-label"> EleMV: </label>
+          <input
+            type="number"
+            class="form-control w-25"
+            id="EleMV"
+            name="EleMV"
+            formcontrolName="EleMV"
+            placeholder=""
+            [(ngModel)]="newMove.EleMV"
+          />
+        </div>
+  
+        <div class="form-group">
+            <label for="WeaponName" class="form-label"> WeaponName: </label>
+            <select
+              class="form-control w-25"
+              id="WeaponName"
+              name="WeaponName"
+              formcontrolName="WeaponName"
+              [(ngModel)]="newMove.WeaponName"
+            >
+              <option>GS</option>
+              <option>LS</option>
+              <option>SNS</option>
+              <option>HA</option>
+              <option>HH</option>
+              <option>LA</option>
+              <option>GL</option>
+              <option>CB</option>
+              <option>SA</option>
+              <option>DB</option>
+              <option>IG</option>
+              <option>LBG</option>
+              <option>HBG</option>
+              <option>BOW</option>
+            </select>
+        </div>
+    
+        <button class="btn btn-primary">Send</button>
+      </form>
+  
+  
+  
+  
+  </div>
+  

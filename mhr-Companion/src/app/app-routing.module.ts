@@ -7,6 +7,7 @@ import { HitZoneComponent } from './hit-zone/hit-zone.component';
 import { LoginComponent } from './login/login.component';
 import { Motion_ZoneComponent } from './motion_zones/motion_zones.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { DevpostformsComponent } from './devpostforms/devpostforms.component';
 
 const routes: Routes = [
 { path: '', redirectTo: '/app-home', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
 { path: 'app-user-settings-form', component: UserSettingsFormComponent },
 { path: 'app-finalresults', component: FinalresultsComponent },
 { path: 'app-finalresults/:MoveID/:MoveName/:DamageType/:RawMV/:EleMV/:WeaponName', component: FinalresultsComponent },
-{ path: 'app-about-us', component: AboutUsComponent}
+{ path: 'app-about-us', component: AboutUsComponent},
+{ path: 'app-devpostforms', component: DevpostformsComponent },
 ];
 
 @NgModule({
