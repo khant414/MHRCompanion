@@ -1,10 +1,13 @@
+<div class="background">
 <div class="container" *ngIf="display" [hidden]="form.submitted">
-  <h2>Input Your Character Stats</h2>
+  <br>
+  <h2 class="heading">Input important info to continue!</h2>
 
+  <p><br></p>
 
   <div class="form2">
   <div class="form-group">
-    <label for="monstername"> Monster to target: </label>
+    <label for="monstername" class="form-label"> Monster to target: </label>
     <select
       class="form-control w-25"
       id="monstername"
@@ -18,9 +21,10 @@
       </option>
     </select>
   </div>
+  
 
   <div class="form-group">
-    <label for="weaponname"> Weapon: </label>
+    <label for="weaponname" class="form-label"> Weapon: </label>
     <select
       class="form-control w-25"
       id="weaponname"
@@ -51,10 +55,12 @@
       />
     </div>-->
 
+      <h2 class="heading">Weapon stats:</h2>
+
     <!--raw input-->
     <div class="form">
     <div class="form-group">
-      <label for="raw" class="form-label"> raw: </label>
+      <label for="raw" class="form-label"> Weapon Raw Attack: </label>
       <input
         type="number"
         min="0"
@@ -68,9 +74,10 @@
         required
       />
     </div>
+    <p></p>
     <!--sharpness input-->
     <div class="form-group">
-      <label for="sharpness" class="form-label"> sharpness: </label>
+      <label for="sharpness" class="form-label"> Sharpness: </label>
       <select
         class="form-control w-25"
         id="sharpness"
@@ -87,6 +94,7 @@
         <option>Purple</option>
       </select>
     </div>
+    <p></p>
     <!--eleType input-->
     <div class="form-group">
       <label for="eleType" class="form-label"> Element Type: </label>
@@ -117,277 +125,377 @@
       <h3>valid: {{ eleTypeField.valid }}</h3>
       <h3>invalid: {{ eleTypeField.invalid }}</h3> -->
     </div>
+    <p></p>
     <!--ele input-->
     <div class="form-group">
-      <label for="ele" class="form-label"> ele: </label>
+      <label for="ele" class="form-label"> Element Amount: </label>
       <input
         type="number"
         class="form-control w-25"
         id="ele"
         name="ele"
         formcontrolName="ele"
-        placeholder=""
+        placeholder="0"
         [(ngModel)]="userSettings.ele"
       />
     </div>
+    <p></p>
     <!--critchance input-->
     <div class="form-group">
-      <label for="critchance" class="form-label"> critchance: </label>
+      <label for="critchance" class="form-label"> Base Critical Chance: </label>
       <input
         type="number"
         class="form-control w-25"
         id="critchance"
         name="critchance"
         formcontrolName="critchance"
-        placeholder=""
+        placeholder="0"
         [(ngModel)]="userSettings.critchance"
       />
     </div>
+    <p></p>
+
+    <h2 class="heading">Armor Skills:</h2>
     <!--wex input-->
     <div class="form-group">
-      <label for="wex" class="form-label"> wex: </label>
-      <input
+      <label for="wex" class="form-label"> Weakness Exploit: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="wex"
         name="wex"
         formcontrolName="wex"
-        placeholder=""
-        [(ngModel)]="userSettings.wex"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.wex">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
-
+    <p></p>
     <!--critboost input-->
     <div class="form-group">
-      <label for="critboost" class="form-label"> critboost: </label>
-      <input
+      <label for="critboost" class="form-label"> Critical Boost: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="critboost"
         name="critboost"
         formcontrolName="critboost"
-        placeholder=""
-        [(ngModel)]="userSettings.critboost"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.critboost">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
+    <p></p>
     <!--criteye input-->
     <div class="form-group">
-      <label for="criteye" class="form-label"> criteye: </label>
-      <input
+      <label for="criteye" class="form-label"> Critical Eye: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="criteye"
         name="criteye"
         formcontrolName="criteye"
-        placeholder=""
-        [(ngModel)]="userSettings.criteye"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.criteye">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+      </select>
     </div>
+    <p></p>
     <!--atkboost input-->
     <div class="form-group">
-      <label for="atkboost" class="form-label"> atkboost: </label>
-      <input
+      <label for="atkboost" class="form-label"> Attack Boost: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="atkboost"
         name="atkboost"
         formcontrolName="atkboost"
-        placeholder=""
-        [(ngModel)]="userSettings.atkboost"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.atkboost">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+      </select>
     </div>
+    <p></p>
     <!--agitator input-->
     <div class="form-group">
-      <label for="agitator" class="form-label"> agitator: </label>
-      <input
+      <label for="agitator" class="form-label"> Agitator: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="agitator"
         name="agitator"
         formcontrolName="agitator"
-        placeholder=""
-        [(ngModel)]="userSettings.agitator"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.agitator">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
     </div>
-
+    <p></p>
     <!--peakperf input-->
     <div class="form-group">
-      <label for="peakperf" class="form-label"> peakperf: </label>
-      <input
+      <label for="peakperf" class="form-label"> Peak Performance: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="peakperf"
         name="peakperf"
         formcontrolName="peakperf"
-        placeholder=""
-        [(ngModel)]="userSettings.peakperf"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.peakperf">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
 
-
+    <p></p>
     <!--resentment input-->
 
     <div class="form-group">
-      <label for="resentment" class="form-label"> resentment: </label>
-      <input
+      <label for="resentment" class="form-label"> Resentment: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="resentment"
         name="resentment"
         formcontrolName="resentment"
-        placeholder=""
-        [(ngModel)]="userSettings.resentment"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.resentment">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
     </div>
-
+    <p></p>
     <!--resuscitate input-->
     <div class="form-group">
-      <label for="resuscitate" class="form-label"> resuscitate: </label>
-      <input
+      <label for="resuscitate" class="form-label"> Resuscitate: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="resuscitate"
         name="resuscitate"
         formcontrolName="resuscitate"
-        placeholder=""
-        [(ngModel)]="userSettings.resuscitate"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.resuscitate">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
-
+    <p></p>
     <!--maxmight input-->
    
     <div class="form-group">
-      <label for="maxmight" class="form-label"> maxmight: </label>
-      <input
+      <label for="maxmight" class="form-label"> Maximum Might: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="maxmight"
         name="maxmight"
         formcontrolName="maxmight"
-        placeholder=""
-        [(ngModel)]="userSettings.maxmight"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.maxmight">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
+    <p></p>
     <!--critele input-->
     <div class="form-group">
-      <label for="critele" class="form-label"> critele: </label>
-      <input
+      <label for="critele" class="form-label"> Critical Element: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="critele"
         name="critele"
         formcontrolName="critele"
-        placeholder=""
-        [(ngModel)]="userSettings.critele"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.critele">
+      <option value="0" selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      </select>
     </div>
+    <p></p>
     <!--offensiveguard input-->
     <div class="form-group">
-      <label for="offensiveguard" class="form-label"> offensiveguard: </label>
-      <input
+      <label for="offensiveguard" class="form-label"> Offensive Guard: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="offensiveguard"
         name="offensiveguard"
         formcontrolName="offensiveguard"
-        placeholder=""
-        [(ngModel)]="userSettings.offensiveguard"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.offensiveguard">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
+    <p></p>
     <!--eleatkup input-->
     <div class="form-group">
-      <label for="eleatkup" class="form-label"> eleatkup: </label>
-      <input
+      <label for="eleatkup" class="form-label"> Element Attack Up: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="eleatkup"
         name="eleatkup"
         formcontrolName="eleatkup"
         placeholder=""
-        [(ngModel)]="userSettings.eleatkup"
-      />
+        [(ngModel)]="userSettings.eleatkup">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
     </div>
+    <p></p>
     <!--counterstrike input-->
     <div class="form-group">
-      <label for="counterstrike" class="form-label"> counterstrike: </label>
-      <input
+      <label for="counterstrike" class="form-label"> Counterstrike: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="counterstrike"
         name="counterstrike"
         formcontrolName="counterstrike"
-        placeholder=""
-        [(ngModel)]="userSettings.counterstrike"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.counterstrike">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
-    
+    <p></p>
     <!--eleexploit input-->
     <div class="form-group">
-      <label for="eleexploit" class="form-label"> eleexploit: </label>
-      <input
+      <label for="eleexploit" class="form-label"> Element Exploit: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="eleexploit"
         name="eleexploit"
         formcontrolName="eleexploit"
-        placeholder=""
-        [(ngModel)]="userSettings.eleexploit"
-        required
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.eleexploit">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
+    <p></p>
     <!--mailofhellfire input-->
     <div class="form-group">
-      <label for="mailofhellfire" class="form-label"> mailofhellfire: </label>
-      <input
+      <label for="mailofhellfire" class="form-label"> Mail of Hellfire (Red Scroll): </label>
+      <select
         type="number"
         class="form-control w-25"
         id="mailofhellfire"
         name="mailofhellfire"
         formcontrolName="mailofhellfire"
-        placeholder=""
-        [(ngModel)]="userSettings.mailofhellfire"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.mailofhellfire">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
+    <p></p>
     <!--dereliction input-->
     <div class="form-group">
-      <label for="dereliction" class="form-label"> dereliction: </label>
-      <input
+      <label for="dereliction" class="form-label"> Dereliction (Blue Scroll): </label>
+      <select
         type="number"
         class="form-control w-25"
         id="dereliction"
         name="dereliction"
         formcontrolName="dereliction"
-        placeholder=""
-        [(ngModel)]="userSettings.dereliction"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.dereliction">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
+    <p></p>
     <!--burst input-->
     <div class="form-group">
-      <label for="burst" class="form-label"> burst: </label>
-      <input
+      <label for="burst" class="form-label"> Burst: </label>
+      <select
         type="number"
         class="form-control w-25"
         id="burst"
         name="burst"
         formcontrolName="burst"
-        placeholder=""
-        [(ngModel)]="userSettings.burst"
-      />
+        placeholder="0"
+        [(ngModel)]="userSettings.burst">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </div>
     </div>
 
-
+    <p><br></p>
 
     <button class="btn btn-primary">Send</button>
-    {{ form.valueChanges | json }}
+    <!-- {{ form.valueChanges | json }}
     <div style="background-color: green">form value changes</div>
     <br /><br />
     {{ form.value | json }}
     <div style="background-color: green">form object</div>
-    <br style="background-color: green" /><br />
+    <br style="background-color: green" /><br /> -->
   </form>
+  <br>
+  <br>
+  <br>
 
 
 
 
+</div>
 </div>

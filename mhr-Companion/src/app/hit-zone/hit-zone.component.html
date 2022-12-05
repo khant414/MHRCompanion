@@ -1,79 +1,79 @@
+
 <div class="card">
+  
   <div class="card-header">{{ pageTitle }}</div>
   <div class="background">
-  <div class="card-body">
-    <div class="row">
-      <div class="co1-md-2">Filter by:</div>
-      <div class="col-md-4">
+
+  <div class="leftstuff">
+      <div>Search:</div>
+      <div>
         <input type="text" [(ngModel)]="hitzoneFilter" />
       </div>
+
+
+    <div>
+      <br>
+      <h4>Filtered by:</h4>
+      <h1>{{ hitzoneFilter }}</h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="co1-md-6">
-      <h4>Filtered by: {{ hitzoneFilter }}</h4>
-    </div>
+
   </div>
   <div class="table-responsive">
     <table class="table table-dark" *ngIf="hitzones.length">
       <thead class="thead-light" >
         <tr>
-          <th>
-            <button class="btn btn-primary">Show Details</button>
-          </th>
 
-          <th>Parts</th>
-          <th>State</th>
-          <th>
+          <th class="part">Part</th>
+          <th class="small">
             <img
               src="assets/images/hit_slash.png"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
             />
           </th>
-          <th>
+          <th class="small">
             <img
               src="assets/images/hit_strike.png"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
             />
           </th>
-          <th>
+          <th class="small">
             <img
               src="assets/images/hit_shell.png"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
             />
           </th>
-          <th>
+          <th class="small">
             <img
               src="assets/images/fire.svg"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
             />
           </th>
-          <th>
+          <th class="small">
             <img
               src="assets/images/water.svg"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
             />
           </th>
-          <th>
+          <th class="small">
             <img
               src="assets/images/ice.svg"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
             />
           </th>
-          <th>
+          <th class="small">
             <img
               src="assets/images/thunder.svg"
               [style.width.px]="imageWidth"
               [style.height.px]="imageHeight"
             />
           </th>
-          <th>
+          <th class="small">
             <img
               src="assets/images/dragon.svg"
               [style.width.px]="imageWidth"
@@ -84,9 +84,7 @@
       </thead>
       <tbody>
         <tr id="tableRow" *ngFor="let hitzone of filteredHitzones" [routerLink]="['/pm-motion_zone', hitzone.parts_name, hitzone.hit_slash, hitzone.hit_strike, hitzone.hit_shot, hitzone.element_fire, hitzone.element_water, hitzone.element_ice, hitzone.element_thunder, hitzone.element_dragon]">
-          <td>Image?</td>
           <td>{{ hitzone.parts_name }}</td>
-          <td>0</td>
           <td>{{ hitzone.hit_slash }}</td>
           <td>{{ hitzone.hit_strike }}</td>
           <td>{{ hitzone.hit_shot }}</td>
@@ -99,5 +97,8 @@
       </tbody>
     </table>
   </div>
+  <p>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </p>
 </div>
 </div>

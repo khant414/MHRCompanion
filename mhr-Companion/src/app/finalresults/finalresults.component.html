@@ -2,17 +2,55 @@
     <div class="card-header">{{ pageTitle }}</div>
     <div class="background">
     <div class="card-body">
-      <div class="row">
+
+      <div class="leftstuff">
         <p>If you use {{mathMV.MoveName}} on {{this.monsterName}}'s {{mathHZ.parts_name}} with your {{math.raw}} raw {{math.ele}} {{math.eleType}} {{math.sharpness}} sharpness {{this.readableWepName}}, this is the result:</p>
         <!-- <p>You will do {{results.raw_no_crit}} raw damage and {{results.ele_no_crit}} {{math.eleType}} damage without a crit, but {{results.raw_crit}} and {{results.ele_crit}} {{math.eleType}} damage with a crit.</p>
         <p>With an overall chance of {{results.crit_chance}}% to crit, this works out to an average of {{results.raw_avg}} raw damage and {{results.ele_avg}} {{math.eleType}} damage for a total of {{results.sum_avg}} damage.</p> -->
+        <p><br></p>
+
+
+          <label for="skill" class="form-label"> Select a skill to investigate: </label>
+          <select
+            class="form-control w-25"
+            id="skill"
+            name="skill"
+            formcontrolName="skill"
+            [(ngModel)]="skillSelect"
+            (click)="zeroComparison($event, skillSelect)">
+            <option [value] = 1>Weakness Exploit</option>
+            <option [value] = 2>Critical Boost</option>
+            <option [value] = 3>Critical Eye</option>
+            <option [value] = 4>Attack Boost</option>
+            <option [value] = 5>Agitator</option>
+            <option [value] = 6>Peak Performance</option>
+            <option [value] = 7>Resentment</option>
+            <option [value] = 8>Resuscitate</option>
+            <option [value] = 9>Maximum Might</option>
+            <option [value] = 10>Critical Element</option>
+            <option [value] = 11>Offensive Guard</option>
+            <option [value] = 12>Element Attack Up</option>
+            <option [value] = 13>Counterstrike</option>
+            <option [value] = 14>Elemental Exploit</option>
+            <option [value] = 15>Mail of Hellfire</option>
+            <option [value] = 16>Dereliction</option>
+            <option [value] = 17>Burst</option>
+          </select>
+          <span *ngIf="edited">Tooltip: {{this.skillDescrip}}</span>
+
+        <br>
+        <br>      
+        <div id="comparison" *ngIf="edited">This skill contributes {{percentage_diff.toFixed(this.digits)}}% of your average damage output.
+           The skill overall is worth {{diff_per_point.toFixed(this.digits)}} damage per point, or {{percentage_diff_per_point.toFixed(this.digits)}}% damage per point.</div>
+           <div id="alert" *ngIf="edited2">You don't even have this armor skill!</div>
       </div>
 
+
       <div class="table-responsive">
-        <table style="width:100%" class="table table-dark">
+        <table class="table table-dark">
           <thead class="thead-light">
             <tr>
-              <th style="width:20%">
+              <th>
                 <select
                   class="form-control w-25"
                   id="digits"
@@ -58,6 +96,8 @@
         </table>
       </div>
 
+
+
       <!-- <div class="form-group">
         <label for="weaponname"> Weapon: </label>
         <select
@@ -74,39 +114,7 @@
         </select>
       </div> -->
 
-      <div class="form-group">
-        <label for="skill" class="form-label"> Select a skill to investigate: </label>
-        <select
-          class="form-control w-25"
-          id="skill"
-          name="skill"
-          formcontrolName="skill"
-          [(ngModel)]="skillSelect"
-          (click)="zeroComparison($event, skillSelect)">
-          <option [value] = 1>Weakness Exploit</option>
-          <option [value] = 2>Critical Boost</option>
-          <option [value] = 3>Critical Eye</option>
-          <option [value] = 4>Attack Boost</option>
-          <option [value] = 5>Agitator</option>
-          <option [value] = 6>Peak Performance</option>
-          <option [value] = 7>Resentment</option>
-          <option [value] = 8>Resuscitate</option>
-          <option [value] = 9>Maximum Might</option>
-          <option [value] = 10>Critical Element</option>
-          <option [value] = 11>Offensive Guard</option>
-          <option [value] = 12>Element Attack Up</option>
-          <option [value] = 13>Counterstrike</option>
-          <option [value] = 14>Elemental Exploit</option>
-          <option [value] = 15>Mail of Hellfire</option>
-          <option [value] = 16>Dereliction</option>
-          <option [value] = 17>Burst</option>
-        </select>
-        <span *ngIf="edited">Tooltip: {{this.skillDescrip}}</span>
-      </div>
-      <br>      
-      <div id="comparison" *ngIf="edited">This skill contributes {{percentage_diff.toFixed(this.digits)}}% of your average damage output.
-         The skill overall is worth {{diff_per_point.toFixed(this.digits)}} damage per point, or {{percentage_diff_per_point.toFixed(this.digits)}}% damage per point.</div>
-         <div id="alert" *ngIf="edited2">You don't even have this armor skill!</div>
+
 
 
     </div>

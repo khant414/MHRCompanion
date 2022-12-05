@@ -4,11 +4,19 @@
 
 .form{
     column-count: 2;
-
+    
 }
 
 .form-group{
     width: 1000px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    
+}
+
+.form-label{
+    width:auto;
+    background-color:rgba(255, 255, 255, 0.646);
 }
 
 .form2{
@@ -16,6 +24,11 @@
 }
 
 .background {
-    background-image: url("../../assets/images/backgroundsmallesttilelightest.png");
+    background-image: url("/../assets/images/bg.png");
+    background-repeat: repeat;
+}
 
+.heading{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 1px 1px grey;
 }
