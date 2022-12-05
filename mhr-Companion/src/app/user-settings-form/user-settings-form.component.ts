@@ -1,5 +1,5 @@
 import { UserSettingsService } from './user-settings.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { UserSettings } from './user-settings';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -73,7 +73,7 @@ import { Subscription } from 'rxjs';
 
   
   constructor(private userSettingsService: UserSettingsService,
-      private router: Router) { }
+      private router: Router,private zone: NgZone) { }
 
   ngOnInit(): void {    
 
@@ -188,7 +188,9 @@ import { Subscription } from 'rxjs';
     let targetWeapon = sessionStorage.getItem("targetWeapon");
     console.log(targetWeapon);
 
-    this.router.navigate(['/app-hit-zone']);
+    this.zone.run(() => {
+      this.router.navigate(['/app-hit-zone']);
+    });
 
 
     
@@ -196,15 +198,15 @@ import { Subscription } from 'rxjs';
 
 
   CheckForDisplay():void {
-    if( sessionStorage.getItem('ID:') == null ) {
-      this.display = false;
-    }
-    else {
-      var x = sessionStorage.getItem('ID:');
-      if (x != null){
-      this.display = true;
-      }
-    } 
+    // if( sessionStorage.getItem('ID:') == null ) {
+    //   this.display = false;
+    // }
+    // else {
+    //   var x = sessionStorage.getItem('ID:');
+    //   if (x != null){
+    //   this.display = true;
+    //   }
+    // } 
   }
 
   private handleError(err: HttpErrorResponse){
