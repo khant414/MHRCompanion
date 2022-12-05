@@ -7,23 +7,42 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<header class="background">
-  <a class="nav-item nav-link"><app-login></app-login></a>
+<header>
+  
   <nav class="nav nav-pills nav-justified">
-    <a class="nav-link" routerLinkActive="Active" routerLink="/app-home">Home</a>
-    <a class="nav-link" routerLinkActive="Active" routerLink="/app-hit-zone">Hitzones</a>
-    <a class="nav-link" routerLinkActive="Active" routerLink="/pm-motion_zone">Motion Values</a>
-    <a class="nav-link" routerLinkActive="Active" routerLink="/app-finalresults">Final Output</a>
-    <a class="nav-link" routerLinkActive="Active" routerLink="/app-about-us">About Us</a>
+    <app-login ></app-login>
+    <a class="nav-link" routerLinkActive="Active" routerLink="/app-home"
+      >Home</a
+    >
+    <a
+      class="nav-link"
+      routerLinkActive="Active"
+      routerLink="/app-user-settings-form"
+      >User Stat Input</a
+    >
+    <a class="nav-link" routerLinkActive="Active" routerLink="/app-hit-zone"
+      >HitZone</a
+    >
+    <a class="nav-link" routerLinkActive="Active" routerLink="/pm-motion_zone"
+      >Motion Zone</a
+    >
+    <a class="nav-link" routerLinkActive="Active" routerLink="/app-finalresults"
+      >Final Output</a
+    >
+    <a class="nav-link" routerLinkActive="Active" routerLink="/app-about-us"
+      >About Us</a
+    >
+
   </nav>
 </header>
-<!-- <app-home></app-home> -->
-<app-user-settings-form></app-user-settings-form>
-<!-- <app-hit-zone></app-hit-zone> -->
-<!-- <pm-motion_zones></pm-motion_zones> -->
-<!-- <app-about-us></app-about-us> -->
-
 <router-outlet></router-outlet>
+<!-- <app-home *!ngIf="hasRoute('app-user-settings-form')"></app-home>
+<app-user-settings-form
+  *ngIf="hasRoute('app-user-settings-form')"
+></app-user-settings-form>
+<app-about-us *ngIf="hasRoute('app-about-us')"></app-about-us> -->
+
+<!-- <router-outlet></router-outlet> -->
 <!-- <nav class="navbar navbar-light bg-faded">
 
 </nav>
