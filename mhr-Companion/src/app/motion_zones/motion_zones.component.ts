@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
     providers: [MotionZoneService]
 })
 export class Motion_ZoneComponent implements OnInit {
-    pageTitle: string = 'Motion Value Library';
+    pageTitle: string = 'Motion Value Library:';
 
 
     //getters & setters for filter
@@ -68,7 +68,10 @@ export class Motion_ZoneComponent implements OnInit {
     
     ngOnInit(): void {
         //grab weapon name from storage
+
         const weaponName = sessionStorage.getItem("targetWeapon");
+
+
 
         //router call from the previous page that stores our hitzone information
         const parts_name = this.route.snapshot.paramMap.get('parts_name');
@@ -82,10 +85,7 @@ export class Motion_ZoneComponent implements OnInit {
         const element_dragon = this.route.snapshot.paramMap.get('element_dragon');
         
         //page title doesn't actually have to be updated... this is just to show what we have
-        this.pageTitle += `Part: ${parts_name}` + `Sever: ${hit_slash}` + `Blunt: ${hit_strike}` 
-        + `Shot: ${hit_shot}` + `Fire: ${element_fire}` + `Water: ${element_water}` + `Ice: ${element_ice}` 
-        + `Thunder: ${element_thunder}` + `Dragon: ${element_dragon}`;
-        
+        this.pageTitle += ` Weapon: ${weaponName}`;        
 
         //check that these values are not null, then add them to the hitzone container
         //now we can do whatever we want with them

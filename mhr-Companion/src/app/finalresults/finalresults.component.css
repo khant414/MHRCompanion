@@ -2,3 +2,12 @@ thead {
     color: #dddee0;
     background-color: #323a45;
 }
+
+.background {
+    background-image: url("../../assets/images/backgroundsmallesttilelightest.png");
+
+}
+
+.card-body{
+    height: 100vh;
+}
