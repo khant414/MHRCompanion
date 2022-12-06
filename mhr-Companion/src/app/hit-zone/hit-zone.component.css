@@ -4,6 +4,34 @@ thead {
 }
 
 .background {
-    background-image: url("../../assets/images/backgroundsmallesttilelightest.png");
+    background-image: url("/../assets/images/bg.png");
+    background-repeat: repeat;
+    height:90vh;
+}
 
+
+.table-responsive{
+
+    float:right;
+    width:65%;
+    margin:20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    
+}
+
+.text{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 1px 1px grey;
+}
+
+.small{
+    width:5%;
+}
+
+.leftstuff{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 1px 1px grey;
+    float:left;
+    margin:20px;
 }

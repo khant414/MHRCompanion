@@ -4,10 +4,34 @@ thead {
 }
 
 .background {
-    background-image: url("../../assets/images/backgroundsmallesttilelightest.png");
-
+    background-image: url("/../assets/images/bg.png");
+    background-repeat: repeat;
 }
 
 .card-body{
     height: 100vh;
+}
+
+.table-responsive{
+
+    float:right;
+    width:50%;
+    margin:20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    
+}
+
+.text{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.leftstuff{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width:40%;
+    float:left;
+    margin:20px;
+    font-size:20px;
+    text-shadow: 2px 2px white;
 }

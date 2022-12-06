@@ -11,6 +11,6 @@ a.cool{
 }
 
 .background {
-    background-image: url("../../assets/images/backgroundsmallesttilelightest.png");
-
+    background-image: url("/../assets/images/bg.png");
+    background-repeat: repeat;
 }

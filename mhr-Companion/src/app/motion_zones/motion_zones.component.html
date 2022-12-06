@@ -1,19 +1,21 @@
 <div class="card">
   <div class="card-header">{{ pageTitle }}</div>
   <div class="background">
-  <div class="card-body">
-    <div class="row">      
-      <div class="co1-md-2">Filter by:</div>
-      <div class="col-md-4">
+    <div class="leftstuff">      
+      <div>Search:</div>
+      <div>
         <input type="text" [(ngModel)]="motionzoneFilter" />
       </div>
+
+    <div>
+      <br>
+      <h4>Filtered by</h4>
+      <h1>{{ motionzoneFilter }}</h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="co1-md-6">
-      <h4>Filtered by: {{ motionzoneFilter }}</h4>
-    </div>
-  </div>
+
+
+</div>
+
   <div class="table-responsive">
     <table class="table table-dark" *ngIf="motionzones.length">
       <thead class="thead-light">
@@ -38,5 +40,7 @@
       </tbody>
     </table>
   </div>
-</div>
+  <p>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </p>
 </div>
