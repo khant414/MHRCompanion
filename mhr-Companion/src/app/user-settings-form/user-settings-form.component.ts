@@ -76,6 +76,8 @@ import { Subscription } from 'rxjs';
       private router: Router,private zone: NgZone) { }
 
   ngOnInit(): void {    
+    this.CheckForDisplay();
+    this.FillInputBoxes();
 
     //populate monster dropdown
     this.sub = this.userSettingsService.getMonsterNames().subscribe({
@@ -98,8 +100,7 @@ import { Subscription } from 'rxjs';
       error: err => this.errorMessage = err
     });
 
-    this.CheckForDisplay();
-    this.FillInputBoxes();
+    
 
 
 
@@ -198,15 +199,15 @@ import { Subscription } from 'rxjs';
 
 
   CheckForDisplay():void {
-    // if( sessionStorage.getItem('ID:') == null ) {
-    //   this.display = false;
-    // }
-    // else {
-    //   var x = sessionStorage.getItem('ID:');
-    //   if (x != null){
-    //   this.display = true;
-    //   }
-    // } 
+    if( sessionStorage.getItem('ID:') == null ) {
+      this.display = false;
+    }
+    else {
+      var x = sessionStorage.getItem('ID:');
+      if (x != null){
+      this.display = true;
+      }
+    } 
   }
 
   private handleError(err: HttpErrorResponse){
