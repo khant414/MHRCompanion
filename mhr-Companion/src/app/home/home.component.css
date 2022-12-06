@@ -13,4 +13,5 @@ a.cool{
 .background {
     background-image: url("/../assets/images/bg.png");
     background-repeat: repeat;
+    height:95vh;
 }

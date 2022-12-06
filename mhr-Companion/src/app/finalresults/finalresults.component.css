@@ -6,11 +6,9 @@ thead {
 .background {
     background-image: url("/../assets/images/bg.png");
     background-repeat: repeat;
+    height:95vh;
 }
 
-.card-body{
-    height: 100vh;
-}
 
 .table-responsive{
 
